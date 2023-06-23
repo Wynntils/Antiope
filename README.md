@@ -64,36 +64,55 @@ attach sources or JavaDocs.
 
 ### Building from source
 
-To install the library from source first of all clone the repository (this is BROKEN), files are bundled:
-```shell script
-git clone https://github.com/JnCrMx/discord-game-sdk4j.git
-```
-To obtain the native libraries you can build them from source too (see below) or just download them:
-````shell script
-sh jitpack-download-natives.sh
-````
+To obtain the native libraries you can build them from source too (see below) or just download them [here](https://github.com/JnCrMx/discord-game-sdk4j/releases/tag/v0.5.5).
+For the Windows files, you should rename them to `discord_game_sdk_jni.dll` and place them under `src/main/resources/native/windows/amd64`
+and `src/main/resources/native/windows/x86` respectively. 
+For MacOS, you should rename the file to `libdiscord_game_sdk_jni.dylib` and place it under `src/main/resources/native/macosx/amd64`.
+For Linux, you should rename the file to `libdiscord_game_sdk_jni.so` and place it under `src/main/resources/native/linux/amd64`.
 
-Finally build (and install) the library with Maven:
-````shell script
-mvn install -Dmaven.antrun.skip=true
-````
+Finally, build (and install) the library with Maven:
+```shell
+mvn clean install -Dmaven.antrun.skip=true
+```
 
 If you want to skip the tests (sometimes they fail for really weird reasons), add ``-DskipTests`` to the command arguments.
 
-#### Building the native library from source
+### Building the native library from source (does not work for MacOS yet)
 
-To build the native libraries from source make sure you have CMake, a compiler that works with CMake (e.g. gcc)
-and a JDK11 installed and properly set up.
+So this will be a rather tedious process. This guide is for WSL (Ubuntu). Definitely does not work on MacOS/Windows.
 
-Then download [Discord's native library](https://dl-game-sdk.discordapp.net/2.5.6/discord_game_sdk.zip)
-and extract it to ``./discord_game_sdk/``.
+Start by installing a lot of dependencies:
+```shell
+sudo apt update
+sudo apt install -y cmake g++-mingw-w64-i686 g++-mingw-w64-x86-64 gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 openjdk-11-jdk
+```
+
+You will also need to download some copy of OpenJDK 11 for Windows. The compressed archive version, not the installer.
+
+At this point, you should have folder `/usr/lib/jvm` with some copies of your Linux JDK. Unzip and move your Windows copy here.
+Then, ensure your `JAVA_HOME` is point to the correct directory (probably some variation of `/usr/lib/jvm/java-11-openjdk-amd64/`).
+If it's not there, you can run `export JAVA_HOME=/usr/lib/whatever`.
+
+Then download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide)
+and extract it to ``./discord_game_sdk/``. You can try with v3.2.1 first and switch to v2.5.6 if it doesn't work.
+
+Next, go to the `toolchains` folder in this project directory. You can ignore the `linux-amd64.cmake` file since we're running on WSL.
+However, you'll need to edit both `windows-x86.cmake` and `windows-amd64.cmake`. In the bottom of these files, there are two lines:
+```
+set(JAVA_INCLUDE_PATH /usr/lib/jvm/windows-x64-jdk-11.0.19/include/)
+set(JAVA_INCLUDE_PATH2 /usr/lib/jvm/windows-x64-jdk-11.0.19/include/win32/)
+```
+
+Make sure these paths point to the Windows JDK you extracted earlier. Note that it does have to point to the `/include/` subdirectory as shown.
 
 The CMake build system is integrated in Maven, so just execute to following command to
 build and install the Java and native library:
 
 ```shell script
-mvn install
+mvn clean install
 ```
+
+I think that was it. If it doesn't work for you, please open an issue. I might have forgotten something as it took a few hours to figure this out without docs.
 
 ## Usage
 
