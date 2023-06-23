@@ -57,8 +57,6 @@ Finally, build (and install) the library with Maven:
 mvn clean install -Dmaven.antrun.skip=true
 ```
 
-If you want to skip the tests (sometimes they fail for really weird reasons), add ``-DskipTests`` to the command arguments.
-
 ### Building the native library from source (does not work for MacOS yet)
 
 So this will be a rather tedious process. This guide is for WSL (Ubuntu). Probably works on normal Linux. Definitely does not work on macOS/Windows.
@@ -109,8 +107,6 @@ build and install the Java and native library:
 ```shell script
 mvn clean install
 ```
-
-Again, consider `-DskipTests`.
 
 I think that was it. If it doesn't work for you, please open an issue. I might have forgotten something as it took a few hours to figure this out without docs.
 
