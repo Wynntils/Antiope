@@ -35,6 +35,9 @@ public class test {
         activity.party().size().setCurrentSize(2);
 
         activity.assets().setLargeImage("test");
+        activity.assets().setLargeText("this is a big image");
+        activity.assets().setSmallImage("test2");
+        activity.assets().setSmallText("this is a less big image");
 
         core.activityManager().updateActivity(activity);
         while (true) {
