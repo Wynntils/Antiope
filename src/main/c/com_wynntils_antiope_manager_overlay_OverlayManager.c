@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <discord_game_sdk.h>
 
-#include "com_wynntils_antiope_OverlayManager.h"
+#include "com_wynntils_antiope_manager_overlay_OverlayManager.h"
 #include "Callback.h"
 
-JNIEXPORT jboolean JNICALL Java_com_wynntils_antiope_OverlayManager_isEnabled(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jboolean JNICALL Java_com_wynntils_antiope_manager_overlay_OverlayManager_isEnabled(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct IDiscordOverlayManager *overlay_manager = (struct IDiscordOverlayManager*) pointer;
 	
@@ -14,7 +14,7 @@ JNIEXPORT jboolean JNICALL Java_com_wynntils_antiope_OverlayManager_isEnabled(JN
 	return enabled;
 }
 
-JNIEXPORT jboolean JNICALL Java_com_wynntils_antiope_OverlayManager_isLocked(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jboolean JNICALL Java_com_wynntils_antiope_manager_overlay_OverlayManager_isLocked(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct IDiscordOverlayManager *overlay_manager = (struct IDiscordOverlayManager*) pointer;
 	
@@ -24,7 +24,7 @@ JNIEXPORT jboolean JNICALL Java_com_wynntils_antiope_OverlayManager_isLocked(JNI
 	return locked;
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_OverlayManager_setLocked(JNIEnv *env, jobject object, jlong pointer, jboolean locked, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_overlay_OverlayManager_setLocked(JNIEnv *env, jobject object, jlong pointer, jboolean locked, jobject callback)
 {
 	struct IDiscordOverlayManager *overlay_manager = (struct IDiscordOverlayManager*) pointer;
 	
@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_OverlayManager_setLocked(JNIEnv
 	overlay_manager->set_locked(overlay_manager, locked, cbd, simple_callback);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_OverlayManager_openActivityInvite(JNIEnv *env, jobject object, jlong pointer, jint type, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_overlay_OverlayManager_openActivityInvite(JNIEnv *env, jobject object, jlong pointer, jint type, jobject callback)
 {
 	struct IDiscordOverlayManager *overlay_manager = (struct IDiscordOverlayManager*) pointer;
 	
@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_OverlayManager_openActivityInvi
 	overlay_manager->open_activity_invite(overlay_manager, type+1, cbd, simple_callback);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_OverlayManager_openGuildInvite(JNIEnv *env, jobject object, jlong pointer, jstring code, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_overlay_OverlayManager_openGuildInvite(JNIEnv *env, jobject object, jlong pointer, jstring code, jobject callback)
 {
 	struct IDiscordOverlayManager *overlay_manager = (struct IDiscordOverlayManager*) pointer;
 	
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_OverlayManager_openGuildInvite(
 	(*env)->ReleaseStringUTFChars(env, code, nativeString);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_OverlayManager_openVoiceSettings(JNIEnv *env, jobject object, jlong pointer, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_overlay_OverlayManager_openVoiceSettings(JNIEnv *env, jobject object, jlong pointer, jobject callback)
 {
 	struct IDiscordOverlayManager *overlay_manager = (struct IDiscordOverlayManager*) pointer;
 	

@@ -1,8 +1,8 @@
 #include <discord_game_sdk.h>
 
-#include "com_wynntils_antiope_activity_ActivitySecrets.h"
+#include "com_wynntils_antiope_manager_activity_type_ActivitySecrets.h"
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_setMatchSecret(JNIEnv *env, jobject object, jlong pointer, jstring secret)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivitySecrets_setMatchSecret(JNIEnv *env, jobject object, jlong pointer, jstring secret)
 {
 	struct DiscordActivitySecrets *secrets = (struct DiscordActivitySecrets*) pointer;
 	
@@ -11,7 +11,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_setMat
 	(*env)->ReleaseStringUTFChars(env, secret, nativeString);
 }
 
-JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_getMatchSecret(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivitySecrets_getMatchSecret(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct DiscordActivitySecrets *secrets = (struct DiscordActivitySecrets*) pointer;
 	
@@ -19,7 +19,7 @@ JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_get
 }
 
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_setJoinSecret(JNIEnv *env, jobject object, jlong pointer, jstring secret)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivitySecrets_setJoinSecret(JNIEnv *env, jobject object, jlong pointer, jstring secret)
 {
 	struct DiscordActivitySecrets *secrets = (struct DiscordActivitySecrets*) pointer;
 	
@@ -28,14 +28,14 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_setJoi
 	(*env)->ReleaseStringUTFChars(env, secret, nativeString);
 }
 
-JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_getJoinSecret(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivitySecrets_getJoinSecret(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct DiscordActivitySecrets *secrets = (struct DiscordActivitySecrets*) pointer;
 	
 	return (*env)->NewStringUTF(env, secrets->join);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_setSpectateSecret(JNIEnv *env, jobject object, jlong pointer, jstring secret)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivitySecrets_setSpectateSecret(JNIEnv *env, jobject object, jlong pointer, jstring secret)
 {
 	struct DiscordActivitySecrets *secrets = (struct DiscordActivitySecrets*) pointer;
 	
@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_setSpe
 	(*env)->ReleaseStringUTFChars(env, secret, nativeString);
 }
 
-JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivitySecrets_getSpectateSecret(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivitySecrets_getSpectateSecret(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct DiscordActivitySecrets *secrets = (struct DiscordActivitySecrets*) pointer;
 	

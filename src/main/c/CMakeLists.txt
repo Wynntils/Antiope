@@ -12,16 +12,16 @@ add_library(discord_game_sdk_jni
 
 			SHARED
 
-			com_wynntils_antiope_activity_Activity.c
-			com_wynntils_antiope_activity_ActivityAssets.c
-			com_wynntils_antiope_activity_ActivityParty.c
-			com_wynntils_antiope_activity_ActivityPartySize.c
-			com_wynntils_antiope_activity_ActivitySecrets.c
-			com_wynntils_antiope_activity_ActivityTimestamps.c
-			com_wynntils_antiope_ActivityManager.c
-			com_wynntils_antiope_CreateParams.c
-			com_wynntils_antiope_DiscordGameSDKCore.c
-			com_wynntils_antiope_OverlayManager.c
+		com_wynntils_antiope_manager_activity_type_Activity.c
+		com_wynntils_antiope_manager_activity_type_ActivityAssets.c
+		com_wynntils_antiope_manager_activity_type_ActivityParty.c
+		com_wynntils_antiope_manager_activity_type_ActivityPartySize.c
+		com_wynntils_antiope_manager_activity_type_ActivitySecrets.c
+		com_wynntils_antiope_manager_activity_type_ActivityTimestamps.c
+		com_wynntils_antiope_manager_activity_ActivityManager.c
+		com_wynntils_antiope_core_type_CreateParams.c
+		com_wynntils_antiope_core_DiscordGameSDKCore.c
+		com_wynntils_antiope_manager_overlay_OverlayManager.c
 
 			Callback.c
 			EventHandler.c)

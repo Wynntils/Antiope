@@ -1,8 +1,8 @@
 #include <discord_game_sdk.h>
 
-#include "com_wynntils_antiope_activity_ActivityAssets.h"
+#include "com_wynntils_antiope_manager_activity_type_ActivityAssets.h"
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_setLargeImage(JNIEnv *env, jobject object, jlong pointer, jstring asset_key)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivityAssets_setLargeImage(JNIEnv *env, jobject object, jlong pointer, jstring asset_key)
 {
 	struct DiscordActivityAssets *assets = (struct DiscordActivityAssets*) pointer;
 	
@@ -11,14 +11,14 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_setLarg
 	(*env)->ReleaseStringUTFChars(env, asset_key, nativeString);
 }
 
-JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_getLargeImage(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivityAssets_getLargeImage(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct DiscordActivityAssets *assets = (struct DiscordActivityAssets*) pointer;
 	
 	return (*env)->NewStringUTF(env, assets->large_image);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_setLargeText(JNIEnv *env, jobject object, jlong pointer, jstring text)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivityAssets_setLargeText(JNIEnv *env, jobject object, jlong pointer, jstring text)
 {
 	struct DiscordActivityAssets *assets = (struct DiscordActivityAssets*) pointer;
 	
@@ -27,7 +27,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_setLarg
 	(*env)->ReleaseStringUTFChars(env, text, nativeString);
 }
 
-JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_getLargeText(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivityAssets_getLargeText(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct DiscordActivityAssets *assets = (struct DiscordActivityAssets*) pointer;
 	
@@ -35,7 +35,7 @@ JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_getL
 }
 
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_setSmallImage(JNIEnv *env, jobject object, jlong pointer, jstring asset_key)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivityAssets_setSmallImage(JNIEnv *env, jobject object, jlong pointer, jstring asset_key)
 {
 	struct DiscordActivityAssets *assets = (struct DiscordActivityAssets*) pointer;
 	
@@ -44,14 +44,14 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_setSmal
 	(*env)->ReleaseStringUTFChars(env, asset_key, nativeString);
 }
 
-JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_getSmallImage(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivityAssets_getSmallImage(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct DiscordActivityAssets *assets = (struct DiscordActivityAssets*) pointer;
 	
 	return (*env)->NewStringUTF(env, assets->small_image);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_setSmallText(JNIEnv *env, jobject object, jlong pointer, jstring text)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivityAssets_setSmallText(JNIEnv *env, jobject object, jlong pointer, jstring text)
 {
 	struct DiscordActivityAssets *assets = (struct DiscordActivityAssets*) pointer;
 	
@@ -60,7 +60,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_setSmal
 	(*env)->ReleaseStringUTFChars(env, text, nativeString);
 }
 
-JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_activity_ActivityAssets_getSmallText(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jstring JNICALL Java_com_wynntils_antiope_manager_activity_type_ActivityAssets_getSmallText(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct DiscordActivityAssets *assets = (struct DiscordActivityAssets*) pointer;
 	

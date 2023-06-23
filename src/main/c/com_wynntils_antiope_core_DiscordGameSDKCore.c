@@ -6,11 +6,11 @@
 
 #include <discord_game_sdk.h>
 
-#include "com_wynntils_antiope_DiscordGameSDKCore.h"
+#include "com_wynntils_antiope_core_DiscordGameSDKCore.h"
 
 void* handle = NULL;
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_initDiscordNative(JNIEnv *env, jclass clazz, jstring path)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_initDiscordNative(JNIEnv *env, jclass clazz, jstring path)
 {
 #if defined(linux) || defined(__APPLE__)
 	if(handle)
@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_initDiscordN
 #endif
 }
 
-JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_create(JNIEnv *env, jobject object, jlong param_pointer)
+JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_create(JNIEnv *env, jobject object, jlong param_pointer)
 {
 	struct DiscordCreateParams *params = (struct DiscordCreateParams*) param_pointer;
 	
@@ -84,25 +84,25 @@ JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_create(JN
 	}
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_destroy(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_destroy(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct IDiscordCore* core = (struct IDiscordCore*) pointer;
 	core->destroy(core);
 }
 
-JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_getActivityManager(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getActivityManager(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct IDiscordCore* core = (struct IDiscordCore*) pointer;
 	return (uint64_t) core->get_activity_manager(core);
 }
 
-JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_getOverlayManager(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getOverlayManager(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct IDiscordCore* core = (struct IDiscordCore*) pointer;
 	return (uint64_t) core->get_overlay_manager(core);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_runCallbacks(JNIEnv *env, jobject object, jlong pointer)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_runCallbacks(JNIEnv *env, jobject object, jlong pointer)
 {
 	struct IDiscordCore* core = (struct IDiscordCore*) pointer;
 	core->run_callbacks(core);
@@ -139,7 +139,7 @@ void log_hook(void* data, enum EDiscordLogLevel level, const char* message)
 	(*(hook_data->jvm))->DetachCurrentThread(hook_data->jvm);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_setLogHook(JNIEnv *env, jobject object, jlong pointer, jint min_level, jobject hook)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_setLogHook(JNIEnv *env, jobject object, jlong pointer, jint min_level, jobject hook)
 {	
 	struct IDiscordCore* core = (struct IDiscordCore*) pointer;
 	

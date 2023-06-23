@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <discord_game_sdk.h>
 
-#include "com_wynntils_antiope_ActivityManager.h"
+#include "com_wynntils_antiope_manager_activity_ActivityManager.h"
 #include "Callback.h"
 
-JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerCommand(JNIEnv *env, jobject object, jlong pointer, jstring command)
+JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_manager_activity_ActivityManager_registerCommand(JNIEnv *env, jobject object, jlong pointer, jstring command)
 {
 	struct IDiscordActivityManager *activity_manager = (struct IDiscordActivityManager*) pointer;
 	
@@ -20,7 +20,7 @@ JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerComm
 	return result_object;
 }
 
-JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerSteam(JNIEnv *env, jobject object, jlong pointer, jint steamId)
+JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_manager_activity_ActivityManager_registerSteam(JNIEnv *env, jobject object, jlong pointer, jint steamId)
 {
 	struct IDiscordActivityManager *activity_manager = (struct IDiscordActivityManager*) pointer;
 	
@@ -34,7 +34,7 @@ JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerStea
 	return result_object;
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_updateActivity(JNIEnv *env, jobject object, jlong pointer, jlong activity_pointer, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_ActivityManager_updateActivity(JNIEnv *env, jobject object, jlong pointer, jlong activity_pointer, jobject callback)
 {
 	struct DiscordActivity *activity = (struct DiscordActivity*) activity_pointer;
 	struct IDiscordActivityManager *activity_manager = (struct IDiscordActivityManager*) pointer;
@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_updateActivity(
 	activity_manager->update_activity(activity_manager, activity, cbd, simple_callback);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_clearActivity(JNIEnv *env, jobject object, jlong pointer, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_ActivityManager_clearActivity(JNIEnv *env, jobject object, jlong pointer, jobject callback)
 {
 	struct IDiscordActivityManager *activity_manager = (struct IDiscordActivityManager*) pointer;
 	
@@ -55,7 +55,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_clearActivity(J
 	activity_manager->clear_activity(activity_manager, cbd, simple_callback);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_sendRequestReply(JNIEnv *env, jobject object, jlong pointer, jlong userId, jint reply, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_ActivityManager_sendRequestReply(JNIEnv *env, jobject object, jlong pointer, jlong userId, jint reply, jobject callback)
 {
 	struct IDiscordActivityManager *activity_manager = (struct IDiscordActivityManager*) pointer;
 	
@@ -65,7 +65,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_sendRequestRepl
 	activity_manager->send_request_reply(activity_manager, userId, reply, cbd, simple_callback);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_sendInvite(JNIEnv *env, jobject object, jlong pointer, jlong userId, jint type, jstring content, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_ActivityManager_sendInvite(JNIEnv *env, jobject object, jlong pointer, jlong userId, jint type, jstring content, jobject callback)
 {
 	struct IDiscordActivityManager *activity_manager = (struct IDiscordActivityManager*) pointer;
 	
@@ -77,7 +77,7 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_sendInvite(JNIE
 	(*env)->ReleaseStringUTFChars(env, content, native_content);
 }
 
-JNIEXPORT void JNICALL Java_com_wynntils_antiope_ActivityManager_acceptRequest(JNIEnv *env, jobject object, jlong pointer, jlong userId, jobject callback)
+JNIEXPORT void JNICALL Java_com_wynntils_antiope_manager_activity_ActivityManager_acceptRequest(JNIEnv *env, jobject object, jlong pointer, jlong userId, jobject callback)
 {
 	struct IDiscordActivityManager *activity_manager = (struct IDiscordActivityManager*) pointer;
 	
