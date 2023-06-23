@@ -301,6 +301,13 @@
                             <version>2.32.0</version>
                             <style>PALANTIR</style>
                         </palantirJavaFormat>
+
+                        <removeUnusedImports />
+                        <importOrder />
+                        <formatAnnotations />
+                        <trimTrailingWhitespace />
+                        <endWithNewline />
+
                     </java>
                 </configuration>
             </plugin>
