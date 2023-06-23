@@ -24,8 +24,10 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_DiscordGameSDKCore_initDiscordN
 	}
 	
 	const char *nativeString = (*env)->GetStringUTFChars(env, path, 0);
-	
-	handle = dlopen(nativeString, RTLD_LAZY);
+
+    printf("Loading Discord libraries from: %s", nativeString);
+
+    handle = dlopen(nativeString, RTLD_LAZY);
 	
 	(*env)->ReleaseStringUTFChars(env, path, nativeString);
 	
