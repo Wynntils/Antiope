@@ -1,9 +1,10 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.core.type;
 
+import com.wynntils.antiope.core.DiscordGameSDKCore;
 import java.util.function.BiConsumer;
 
 /**
- * <p>Log levels for {@link Core#setLogHook(LogLevel, BiConsumer)}.</p>
+ * <p>Log levels for {@link DiscordGameSDKCore#setLogHook(LogLevel, BiConsumer)}.</p>
  * <p>Every log level also includes the previous ones.
  * For example {@link LogLevel#WARN} also logs {@link LogLevel#ERROR}.</p>
  * <p>Note that the native enum starts at index {@code 1} while this enum starts at index {@code 0}.

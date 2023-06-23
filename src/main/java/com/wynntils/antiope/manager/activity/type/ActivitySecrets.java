@@ -1,4 +1,4 @@
-package com.wynntils.antiope.activity;
+package com.wynntils.antiope.manager.activity.type;
 
 /**
  * A structure containing secrets used to handle and display join and spectate options.

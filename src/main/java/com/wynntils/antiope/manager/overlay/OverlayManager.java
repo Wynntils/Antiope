@@ -1,6 +1,8 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.manager.overlay;
 
-import com.wynntils.antiope.activity.ActivityActionType;
+import com.wynntils.antiope.core.type.Result;
+import com.wynntils.antiope.manager.activity.type.ActivityActionType;
+import com.wynntils.antiope.core.DiscordGameSDKCore;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -11,9 +13,9 @@ import java.util.function.Consumer;
  */
 public class OverlayManager {
     private final long pointer;
-    private final Core core;
+    private final DiscordGameSDKCore core;
 
-    OverlayManager(long pointer, Core core) {
+    public OverlayManager(long pointer, DiscordGameSDKCore core) {
         this.pointer = pointer;
         this.core = core;
     }
@@ -40,13 +42,13 @@ public class OverlayManager {
 
     /**
      * <p>Changes the locked status of the overlay.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @param locked New locked status
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/overlay#setlocked">
      *     https://discordapp.com/developers/docs/game-sdk/overlay#setlocked</a>
      */
     public void setLocked(boolean locked) {
-        setLocked(locked, Core.DEFAULT_CALLBACK);
+        setLocked(locked, DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**
@@ -63,13 +65,13 @@ public class OverlayManager {
 
     /**
      * <p>Opens the overlay and prepares a join/spectate invitation to send.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @param type Type of the invitation
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/overlay#openactivityinvite">
      *     https://discordapp.com/developers/docs/game-sdk/overlay#openactivityinvite</a>
      */
     public void openActivityInvite(ActivityActionType type) {
-        openActivityInvite(type, Core.DEFAULT_CALLBACK);
+        openActivityInvite(type, DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**
@@ -86,13 +88,13 @@ public class OverlayManager {
 
     /**
      * <p>Opens the overlay and attempts to join a guild with an invite code.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @param code Invite code for a guild
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/overlay#openguildinvite">
      *     https://discordapp.com/developers/docs/game-sdk/overlay#openguildinvite</a>
      */
     public void openGuildInvite(String code) {
-        openGuildInvite(code, Core.DEFAULT_CALLBACK);
+        openGuildInvite(code, DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**
@@ -109,12 +111,12 @@ public class OverlayManager {
 
     /**
      * <p>Opens the overlay and shows a widget to adjust the user's application specific voice settings.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/overlay#openvoicesettings">
      *     https://discordapp.com/developers/docs/game-sdk/overlay#openvoicesettings</a>
      */
     public void openVoiceSettings() {
-        openVoiceSettings(Core.DEFAULT_CALLBACK);
+        openVoiceSettings(DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**

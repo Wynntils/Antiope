@@ -1,6 +1,6 @@
 package com.wynntils.antiope.user;
 
-import com.wynntils.antiope.activity.Activity;
+import com.wynntils.antiope.manager.activity.type.Activity;
 
 /**
  * Representation of a user's current presence (usually provided with a {@link Relationship}).

@@ -1,7 +1,5 @@
 package com.wynntils.antiope.user;
 
-import com.wynntils.antiope.activity.Activity;
-
 /**
  * The relationship between a user and the current user.
  * @see <a href="https://discordapp.com/developers/docs/game-sdk/relationships#data-models-relationship-struct">
@@ -51,16 +49,5 @@ public class Relationship {
     @Override
     public String toString() {
         return "Relationship{" + "type=" + type + ", user=" + user + ", presence=" + presence + '}';
-    }
-
-    static Relationship createRelationship(int type, DiscordUser user, int status, long activity) {
-        RelationshipType type1 = RelationshipType.values()[type];
-        OnlineStatus status1 = OnlineStatus.values()[status];
-
-        Activity activity1 = new Activity(activity);
-
-        Presence presence = new Presence(status1, activity1);
-
-        return new Relationship(type1, user, presence);
     }
 }

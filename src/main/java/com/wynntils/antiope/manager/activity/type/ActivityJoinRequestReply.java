@@ -1,4 +1,4 @@
-package com.wynntils.antiope.activity;
+package com.wynntils.antiope.manager.activity.type;
 
 /**
  * Type of replies to "Ask to join" requests.

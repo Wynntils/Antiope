@@ -1,8 +1,10 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.manager.activity;
 
-import com.wynntils.antiope.activity.Activity;
-import com.wynntils.antiope.activity.ActivityActionType;
-import com.wynntils.antiope.activity.ActivityJoinRequestReply;
+import com.wynntils.antiope.core.type.Result;
+import com.wynntils.antiope.manager.activity.type.Activity;
+import com.wynntils.antiope.manager.activity.type.ActivityActionType;
+import com.wynntils.antiope.manager.activity.type.ActivityJoinRequestReply;
+import com.wynntils.antiope.core.DiscordGameSDKCore;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -13,9 +15,9 @@ import java.util.function.Consumer;
  */
 public class ActivityManager {
     private final long pointer;
-    private final Core core;
+    private final DiscordGameSDKCore core;
 
-    ActivityManager(long pointer, Core core) {
+    public ActivityManager(long pointer, DiscordGameSDKCore core) {
         this.pointer = pointer;
         this.core = core;
     }
@@ -45,13 +47,13 @@ public class ActivityManager {
 
     /**
      * <p>Updates the user's current presence to a new activity.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @param activity New activity for the user.
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/activities#updateactivity">
      *     https://discordapp.com/developers/docs/game-sdk/activities#updateactivity</a>
      */
     public void updateActivity(Activity activity) {
-        updateActivity(activity, Core.DEFAULT_CALLBACK);
+        updateActivity(activity, DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**
@@ -68,12 +70,12 @@ public class ActivityManager {
 
     /**
      * <p>Clears the user's current presence.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/activities#clearactivity">
      *     https://discordapp.com/developers/docs/game-sdk/activities#clearactivity</a>
      */
     public void clearActivity() {
-        clearActivity(Core.DEFAULT_CALLBACK);
+        clearActivity(DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**
@@ -89,14 +91,14 @@ public class ActivityManager {
 
     /**
      * <p>Replies to an "Ask to join" request.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @param userId ID of user who asked to join
      * @param reply Type of reply to send
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/activities#sendrequestreply">
      *     https://discordapp.com/developers/docs/game-sdk/activities#sendrequestreply</a>
      */
     public void sendRequestReply(long userId, ActivityJoinRequestReply reply) {
-        sendRequestReply(userId, reply, Core.DEFAULT_CALLBACK);
+        sendRequestReply(userId, reply, DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**
@@ -114,7 +116,7 @@ public class ActivityManager {
 
     /**
      * <p>Invites a user to join your game.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @param userId ID of user to invite
      * @param type Type of invitation to send
      * @param content Content/message of the invitation
@@ -122,7 +124,7 @@ public class ActivityManager {
      *     https://discordapp.com/developers/docs/game-sdk/activities#sendinvite</a>
      */
     public void sendInvite(long userId, ActivityActionType type, String content) {
-        sendInvite(userId, type, content, Core.DEFAULT_CALLBACK);
+        sendInvite(userId, type, content, DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**
@@ -146,13 +148,13 @@ public class ActivityManager {
 
     /**
      * <p>Accepts a game invitation from another user.</p>
-     * <p>The {@link Core#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
+     * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @param userId ID of user to accept invitation from
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/activities#acceptinvite">
      *     https://discordapp.com/developers/docs/game-sdk/activities#acceptinvite</a>
      */
     public void acceptRequest(long userId) {
-        acceptRequest(userId, Core.DEFAULT_CALLBACK);
+        acceptRequest(userId, DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**
