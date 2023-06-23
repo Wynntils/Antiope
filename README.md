@@ -87,6 +87,8 @@ sudo apt update
 sudo apt install -y cmake g++-mingw-w64-i686 g++-mingw-w64-x86-64 gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 openjdk-11-jdk
 ```
 
+And also download [Maven](https://maven.apache.org/download.cgi) if you don't have it. Extract it somewhere and add the `bin` folder to your `PATH`.
+
 You will also need to download some copy of OpenJDK 11 for Windows. The compressed archive version, not the installer.
 
 At this point, you should have folder `/usr/lib/jvm` with some copies of your Linux JDK. Unzip and move your Windows copy here.
