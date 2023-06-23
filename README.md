@@ -62,7 +62,7 @@ attach sources or JavaDocs.
 To obtain the native libraries you can build them from source too (see below) or just download them [here](https://github.com/JnCrMx/discord-game-sdk4j/releases/tag/v0.5.5).
 For the Windows files, you should rename them to `discord_game_sdk_jni.dll` and place them under `src/main/resources/native/windows/amd64`
 and `src/main/resources/native/windows/x86` respectively. 
-For MacOS, you should rename the file to `libdiscord_game_sdk_jni.dylib` and place it under `src/main/resources/native/macosx/amd64`.
+For macOS, you should rename the file to `libdiscord_game_sdk_jni.dylib` and place it under `src/main/resources/native/macosx/amd64`.
 For Linux, you should rename the file to `libdiscord_game_sdk_jni.so` and place it under `src/main/resources/native/linux/amd64`.
 
 Finally, build (and install) the library with Maven:
@@ -74,7 +74,7 @@ If you want to skip the tests (sometimes they fail for really weird reasons), ad
 
 ### Building the native library from source (does not work for MacOS yet)
 
-So this will be a rather tedious process. This guide is for WSL (Ubuntu). Probably works on normal Linux. Definitely does not work on MacOS/Windows.
+So this will be a rather tedious process. This guide is for WSL (Ubuntu). Probably works on normal Linux. Definitely does not work on macOS/Windows.
 
 Start by installing a lot of dependencies:
 ```shell
@@ -88,9 +88,10 @@ You will also need to download some copy of OpenJDK 11 for Windows. The compress
 
 At this point, you should have folder `/usr/lib/jvm` with some copies of your Linux JDK. Unzip and move your Windows copy here.
 Then, ensure your `JAVA_HOME` is point to the correct directory (probably some variation of `/usr/lib/jvm/java-11-openjdk-amd64/`).
+You can check with `echo ${JAVA_HOME}`.
 If it's not there, you can run `export JAVA_HOME=/usr/lib/whatever`.
 
-For MacOS, this part is a bit more complicated. You will need to follow the instructions [here](https://github.com/tpoechtrager/osxcross#packaging-the-sdk),
+For macOS, this part is a bit more complicated. You will need to follow the instructions [here](https://github.com/tpoechtrager/osxcross#packaging-the-sdk),
 but they are slightly wrong. In `~`, clone the repository.
 We are going to be using the **"Packing the SDK on Linux - Method 1 (Xcode > 8.0)"** option.
 The Xcode version I tested was 12.5.1. 14.3.1 did **not** seem to work. 
