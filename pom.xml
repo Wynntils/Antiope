@@ -161,7 +161,7 @@
                         </goals>
                         <configuration>
                             <target>
-                                <mkdir dir="${project.build.directory}/native/macos/amd64"/>
+                                <mkdir dir="${project.build.directory}/native/macos/aarch64"/>
                                 <exec executable="cmake" dir="${project.build.directory}/native/macos/aarch64" failonerror="true">
                                     <arg line="-DCMAKE_TOOLCHAIN_FILE=${basedir}/toolchains/macos-aarch64.cmake -DCMAKE_BUILD_TYPE=Release ${basedir}/src/main/c"/>
                                 </exec>
@@ -259,6 +259,25 @@
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/native/macos/amd64</directory>
+                                    <includes>
+                                        <include>libdiscord_game_sdk_jni.dylib</include>
+                                    </includes>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-native-macos-aarch64</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/native/macos/aarch64</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}/native/macos/aarch64</directory>
                                     <includes>
                                         <include>libdiscord_game_sdk_jni.dylib</include>
                                     </includes>

@@ -99,8 +99,9 @@ Also note that step 2 is incorrect. Instead of installing `libssl-devel lzma-dev
 
 Once you do the above, you can proceed to their [installation instructions](https://github.com/tpoechtrager/osxcross#installation).
 Again, note that the packages mentioned are wrong. You should exclude `xz` and `libbz2`. 
-Then, running `./build.sh` worked for me. Assuming you installed this to `~/osxcross/target`, no other changes are needed.
-If not, you will have to edit `macos-amd64.cmake` and change the paths to point to your installation.
+Then, running `./build.sh` worked for me.
+Lastly, you will have to edit `macos-amd64.cmake` and change the paths (lines 2 and 4) to point to your installation.
+Note that line 4 does not allow you to use `~`, so you will have to use the full path.
 
 Next, go to the `toolchains` folder in this project directory. You can ignore the `linux-amd64.cmake` file since we're running on WSL.
 However, you'll need to edit both `windows-x86.cmake` and `windows-amd64.cmake`. In the bottom of these files, there are two lines:
