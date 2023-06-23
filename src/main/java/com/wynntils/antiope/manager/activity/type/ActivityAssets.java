@@ -1,4 +1,4 @@
-package com.wynntils.antiope.activity;
+package com.wynntils.antiope.manager.activity.type;
 
 /**
  * <p>A structure used for images (assets) attached to activities.</p>

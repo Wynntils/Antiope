@@ -1,4 +1,4 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.core.type;
 
 /**
  * Exception which is thrown when a {@link Result} that is not {@link Result#OK} occurs.

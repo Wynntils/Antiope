@@ -1,11 +1,13 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.core.type;
 
+import com.wynntils.antiope.core.DiscordGameSDKCore;
+import com.wynntils.antiope.event.DiscordEventAdapter;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 
 /**
- * Initial parameters to create a {@link Core} from.
+ * Initial parameters to create a {@link DiscordGameSDKCore} from.
  * @see <a href="https://discordapp.com/developers/docs/game-sdk/discord#create-parameters">
  *     https://discordapp.com/developers/docs/game-sdk/discord#create-parameters</a>
  */
@@ -25,7 +27,7 @@ public class CreateParams implements AutoCloseable {
         /**
          * This flag does <i>not</i> require Discord to be active to use the SDK.
          * <p>
-         * Nevertheless, {@link Core#runCallbacks()} will fail if Discord is not active,
+         * Nevertheless, {@link DiscordGameSDKCore#runCallbacks()} will fail if Discord is not active,
          * but it will just throw a {@link GameSDKException} and will not terminate
          * the application.
          */
@@ -159,10 +161,10 @@ public class CreateParams implements AutoCloseable {
     /**
      * <p>Frees the allocated native structure.</p>
      * <p>You should call this when you do not need the structure anymore.
-     * Do <b>not</b> call this if you still want to use a {@link Core} created from the params.
+     * Do <b>not</b> call this if you still want to use a {@link DiscordGameSDKCore} created from the params.
      * It will cause the JVM to crash with an access violation exception.</p>
      * <p>If you a using a <i>try-with-resources</i> block make sure that you only use the created
-     * {@link Core} - especially {@link Core#runCallbacks()} - <b>inside</b> the block, because
+     * {@link DiscordGameSDKCore} - especially {@link DiscordGameSDKCore#runCallbacks()} - <b>inside</b> the block, because
      * the CreateParams will be closed by the end of the block.</p>
      */
     @Override

@@ -1,6 +1,7 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.event;
 
-import com.wynntils.antiope.activity.ActivitySecrets;
+import com.wynntils.antiope.manager.activity.type.ActivitySecrets;
+import com.wynntils.antiope.manager.overlay.OverlayManager;
 import com.wynntils.antiope.user.DiscordUser;
 import com.wynntils.antiope.user.Relationship;
 
@@ -37,8 +38,6 @@ public abstract class DiscordEventAdapter {
 
     /**
      * <p>Fires when the current user changes their user information (avatar, username, etc.).</p>
-     * <p><i>Also</i> fires after initialization of the {@link UserManager} and therefore indicates
-     * that {@link UserManager#getCurrentUser()} is ready to be called.</p>
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/users#oncurrentuserupdate">
      *     https://discordapp.com/developers/docs/game-sdk/users#oncurrentuserupdate</a>
      */

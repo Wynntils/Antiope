@@ -1,5 +1,7 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.util;
 
+import com.wynntils.antiope.core.type.GameSDKException;
+import com.wynntils.antiope.core.type.Result;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -44,7 +46,6 @@ public class DiscordUtils {
      * Creates a {@link BiConsumer} that takes a {@link Result} and then completes a {@link CompletableFuture}.
      * <p>
      * The future is completely normally with the value passed to the {@link BiConsumer}
-     * (e.g. as part of {@link LobbyManager#createLobby(LobbyTransaction, BiConsumer)}),
      * if and only if the {@link Result} is {@link Result#OK}.
      * <p>
      * In any other case it is completed exceptionally with
@@ -73,7 +74,7 @@ public class DiscordUtils {
      * <p>
      * Discord Snowflakes are used for all sorts of IDs (e.g. User ID, Lobby ID).
      * They contain information about the time they were created,
-     * which this methods extracts.
+     * which this method extracts.
      * @param snowflake A Discord Snowflake
      * @return The {@link Instant} at which the Discord object (User, Lobby, etc.) was created
      * @see <a href="https://discord.com/developers/docs/reference#snowflakes">

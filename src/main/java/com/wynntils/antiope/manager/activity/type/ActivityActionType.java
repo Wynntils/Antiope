@@ -1,6 +1,6 @@
-package com.wynntils.antiope.activity;
+package com.wynntils.antiope.manager.activity.type;
 
-import com.wynntils.antiope.OverlayManager;
+import com.wynntils.antiope.manager.overlay.OverlayManager;
 import java.util.function.Consumer;
 
 /**

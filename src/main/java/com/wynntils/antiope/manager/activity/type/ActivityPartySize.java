@@ -1,4 +1,4 @@
-package com.wynntils.antiope.activity;
+package com.wynntils.antiope.manager.activity.type;
 
 /**
  * A structure used to display information about the size (current and max) of the player's party.

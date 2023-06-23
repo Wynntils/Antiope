@@ -1,4 +1,4 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.event;
 
 import com.wynntils.antiope.user.DiscordUser;
 import com.wynntils.antiope.user.Relationship;

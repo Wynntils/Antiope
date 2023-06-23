@@ -1,4 +1,4 @@
-package com.wynntils.antiope;
+package com.wynntils.antiope.core.type;
 
 /**
  * Enum for results the SDK might return.
