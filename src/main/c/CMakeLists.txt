@@ -20,7 +20,7 @@ add_library(discord_game_sdk_jni
 			com_wynntils_antiope_activity_ActivityTimestamps.c
 			com_wynntils_antiope_ActivityManager.c
 			com_wynntils_antiope_CreateParams.c
-			com_wynntils_antiope_Core.c
+			com_wynntils_antiope_DiscordGameSDKCore.c
 			com_wynntils_antiope_OverlayManager.c
 
 			Callback.c
