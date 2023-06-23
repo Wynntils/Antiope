@@ -266,6 +266,7 @@
                     <java>
                         <includes>
                             <include>src/main/java/**/*.java</include> <!-- Check application code -->
+                            <include>examples/**/*.java</include> <!-- Check example code -->
                         </includes>
                         <palantirJavaFormat>
                             <version>2.32.0</version>
