@@ -416,17 +416,6 @@ public class Core implements AutoCloseable {
     }
 
     /**
-     * <p>Returns the {@link UserManager} associated with this core.</p>
-     * <p>A UserManager is used to receive information about Discord users.</p>
-     * @return A {@link UserManager}
-     * @see <a href="https://discordapp.com/developers/docs/game-sdk/discord#getusermanager">
-     *     https://discordapp.com/developers/docs/game-sdk/discord#getusermanager</a>
-     */
-    public UserManager userManager() {
-        return userManager;
-    }
-
-    /**
      * <p>Returns the {@link OverlayManager} associated with this core.</p>
      * <p>An OverlayManager is used to control the overlay for this game.</p>
      * @return An {@link OverlayManager}
@@ -435,18 +424,6 @@ public class Core implements AutoCloseable {
      */
     public OverlayManager overlayManager() {
         return overlayManager;
-    }
-
-    /**
-     * <p>Returns the {@link RelationshipManager} associated with this core.</p>
-     * <p>A RelationshipManager is used to receive information about the user's
-     * relationships with other Discord users (e.g. friends).</p>
-     * @return A {@link RelationshipManager}
-     * @see <a href="https://discordapp.com/developers/docs/game-sdk/discord#getrelationshipmanager">
-     *     https://discordapp.com/developers/docs/game-sdk/discord#getrelationshipmanager</a>
-     */
-    public RelationshipManager relationshipManager() {
-        return relationshipManager;
     }
 
     /**
