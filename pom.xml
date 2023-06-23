@@ -2,17 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.jncrmx</groupId>
-	<artifactId>discord-game-sdk4j</artifactId>
-	<version>0.5.5</version>
-	<name>discord-game-sdk4j</name>
+	<groupId>com.wynntils</groupId>
+	<artifactId>antiope</artifactId>
+	<version>0.1.0</version>
+	<name>Antiope</name>
 
     <description>Java bindings for Discord's Game SDK</description>
-    <url>https://github.com/JnCrMx/discord-game-sdk4j</url>
+    <url>https://github.com/Wynntils/Antiope</url>
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>https://raw.githubusercontent.com/JnCrMx/discord-game-sdk4j/master/LICENSE</url>
+            <url>https://raw.githubusercontent.com/Wynntils/Antiope/master/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -63,7 +63,7 @@
                                     <arg line="-DCMAKE_TOOLCHAIN_FILE=${basedir}/toolchains/linux-amd64.cmake -DCMAKE_BUILD_TYPE=Release ${basedir}/src/main/c"/>
                                 </exec>
                                 <exec executable="cmake" dir="${project.build.directory}/native/linux/amd64" failonerror="true">
-                                    <arg line="--build . --config Release"/>
+                                    <arg line="--build . --config Release -j 16"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -81,7 +81,7 @@
                                     <arg line="-DCMAKE_TOOLCHAIN_FILE=${basedir}/toolchains/windows-amd64.cmake -DBUILDARCH=x86_64 -DCMAKE_BUILD_TYPE=Release ${basedir}/src/main/c"/>
                                 </exec>
                                 <exec executable="cmake" dir="${project.build.directory}/native/windows/amd64" failonerror="true">
-                                    <arg line="--build . --config Release"/>
+                                    <arg line="--build . --config Release -j 16"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -99,7 +99,7 @@
                                     <arg line="-DCMAKE_TOOLCHAIN_FILE=${basedir}/toolchains/windows-x86.cmake -DBUILDARCH=x86 -DCMAKE_BUILD_TYPE=Release ${basedir}/src/main/c"/>
                                 </exec>
                                 <exec executable="cmake" dir="${project.build.directory}/native/windows/x86" failonerror="true">
-                                    <arg line="--build . --config Release"/>
+                                    <arg line="--build . --config Release -j 16"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -117,7 +117,7 @@
                                     <arg line="-DCMAKE_TOOLCHAIN_FILE=${basedir}/toolchains/macos-amd64.cmake -DCMAKE_BUILD_TYPE=Release ${basedir}/src/main/c"/>
                                 </exec>
                                 <exec executable="cmake" dir="${project.build.directory}/native/macos/amd64" failonerror="true">
-                                    <arg line="--build . --config Release"/>
+                                    <arg line="--build . --config Release -j 16"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -135,7 +135,7 @@
                                     <arg line="-DCMAKE_TOOLCHAIN_FILE=${basedir}/toolchains/macos-aarch64.cmake -DCMAKE_BUILD_TYPE=Release ${basedir}/src/main/c"/>
                                 </exec>
                                 <exec executable="cmake" dir="${project.build.directory}/native/macos/aarch64" failonerror="true">
-                                    <arg line="--build . --config Release"/>
+                                    <arg line="--build . --config Release -j 16"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -283,4 +283,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/wynntils/antiope</url>
+        </repository>
+    </distributionManagement>
 </project>

@@ -13,8 +13,8 @@ void simple_callback(void* data, enum EDiscordResult result)
 	args.group = NULL;
 	(*(cbd->jvm))->AttachCurrentThread(cbd->jvm, (void**)&env, &args);
 	
-	jclass result_clazz = (*env)->FindClass(env, "de/jcm/discordgamesdk/Result");
-	jmethodID values_method = (*env)->GetStaticMethodID(env, result_clazz, "values", "()[Lde/jcm/discordgamesdk/Result;");
+	jclass result_clazz = (*env)->FindClass(env, "com/wynntils/antiope/core/type/Result");
+	jmethodID values_method = (*env)->GetStaticMethodID(env, result_clazz, "values", "()[Lcom/wynntils/antiope/core/type/Result;");
 	jobjectArray values = (jobjectArray) (*env)->CallStaticObjectMethod(env, result_clazz, values_method);
 	jobject result_object = (*env)->GetObjectArrayElement(env, values, result);
 	
