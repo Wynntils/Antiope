@@ -11,22 +11,21 @@ import java.util.function.BiConsumer;
  * @see <a href="https://discordapp.com/developers/docs/game-sdk/discord#data-models-loglevel-enum">
  *     https://discordapp.com/developers/docs/game-sdk/discord#data-models-loglevel-enum</a>
  */
-public enum LogLevel
-{
-	/**
-	 * Log errors.
-	 */
-	ERROR,
-	/**
-	 * Log warnings, and errors.
-	 */
-	WARN,
-	/**
-	 * Log information, warnings, and errors.
-	 */
-	INFO,
-	/**
-	 * Log everything!
-	 */
-	DEBUG
+public enum LogLevel {
+    /**
+     * Log errors.
+     */
+    ERROR,
+    /**
+     * Log warnings, and errors.
+     */
+    WARN,
+    /**
+     * Log information, warnings, and errors.
+     */
+    INFO,
+    /**
+     * Log everything!
+     */
+    DEBUG
 }

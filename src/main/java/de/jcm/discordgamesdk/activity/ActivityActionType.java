@@ -11,22 +11,19 @@ import java.util.function.Consumer;
  * @see <a href="https://discordapp.com/developers/docs/game-sdk/overlay#data-models-activityactiontype-enum">
  *     https://discordapp.com/developers/docs/game-sdk/overlay#data-models-activityactiontype-enum</a>
  */
-public enum ActivityActionType
-{
-	/**
-	 * Send/open a join invitation.
-	 */
-	JOIN,
-	/**
-	 * Send/open a spectate invitation.
-	 */
-	SPECTATE
-	;
+public enum ActivityActionType {
+    /**
+     * Send/open a join invitation.
+     */
+    JOIN,
+    /**
+     * Send/open a spectate invitation.
+     */
+    SPECTATE;
 
-	private static final int OFFSET = 1;
+    private static final int OFFSET = 1;
 
-	public int nativeValue()
-	{
-		return ordinal() + OFFSET;
-	}
+    public int nativeValue() {
+        return ordinal() + OFFSET;
+    }
 }

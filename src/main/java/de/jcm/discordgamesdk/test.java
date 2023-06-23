@@ -1,7 +1,6 @@
 package de.jcm.discordgamesdk;
 
 import de.jcm.discordgamesdk.activity.Activity;
-
 import java.io.File;
 import java.time.Instant;
 

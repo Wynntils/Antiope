@@ -5,18 +5,17 @@ package de.jcm.discordgamesdk.activity;
  * @see <a href="https://discordapp.com/developers/docs/game-sdk/activities#data-models-activityjoinrequestreply-enum">
  *     https://discordapp.com/developers/docs/game-sdk/activities#data-models-activityjoinrequestreply-enum</a>
  */
-public enum ActivityJoinRequestReply
-{
-	/**
-	 * No. Deny the request.
-	 */
-	NO,
-	/**
-	 * Yes. Accept the request.
-	 */
-	YES,
-	/**
-	 * Ignore the request.
-	 */
-	IGNORE
+public enum ActivityJoinRequestReply {
+    /**
+     * No. Deny the request.
+     */
+    NO,
+    /**
+     * Yes. Accept the request.
+     */
+    YES,
+    /**
+     * Ignore the request.
+     */
+    IGNORE
 }
