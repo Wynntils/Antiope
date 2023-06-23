@@ -2,7 +2,6 @@
 #include <jni.h>
 
 #include "EventHandler.h"
-#include "Utils.h"
 
 // activity_events
 void on_activity_join(void* event_data, const char* secret)

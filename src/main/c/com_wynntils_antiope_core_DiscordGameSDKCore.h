@@ -41,14 +41,6 @@ JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getAct
 
 /*
  * Class:     com_wynntils_antiope_core_DiscordGameSDKCore
- * Method:    getUserManager
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getUserManager
-  (JNIEnv *, jobject, jlong);
-
-/*
- * Class:     com_wynntils_antiope_core_DiscordGameSDKCore
  * Method:    getOverlayManager
  * Signature: (J)J
  */
