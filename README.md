@@ -1,17 +1,18 @@
-# discord-game-sdk4j
+# Antiope
 
+## Details
 This project provides Java bindings for the rich presence portion of the
 [Discord GameSDK](https://discordapp.com/developers/docs/game-sdk/sdk-starter-guide).
 
 The intent of this fork is to provide rich presence support for [Wynntils/Artemis](https://github.com/Wynntils/artemis).
-Changes from the original project include proper documentation for building native libraries from source, as well as macOS ARM support.
+Changes from the original project include proper documentation for building native libraries from source, as well as macOS ARM support along with code refactorings.
 
 ## Rich Presence
 
 If you are just looking for an alternative to the deprecated [Discord Rich Presence SDK](https://discord.com/developers/docs/rich-presence/how-to),
-head over to the [ActivityExample.java](examples/ActivityExample.java)!
+check out [ActivityManager](https://github.com/Wynntils/Antiope/blob/master/src/main/java/com/wynntils/antiope/manager/activity/ActivityManager.java).
 
-If you are using this as a part of a Minecraft mod, it is highly recommended that you instead put the callback in a TickEvent, instead of a while true loop.
+If you are using this as a part of a Minecraft mod, it is highly recommended that you run callbacks in a TickEvent or in a separate thread.
 
 ## Installation 
 
@@ -19,27 +20,23 @@ If you are using this as a part of a Minecraft mod, it is highly recommended tha
 
 #### Maven, Gradle and other build tools
 
-There are pre-compiled builds on JitPack (link TBD)
-together with instructions how to use them for all common build tools.
+There are pre-compiled builds on Github Packages.
 
 #### Manual installation
 
-For projects not using any build tools, download a pre-compiled JAR-file (``discord-game-sdk4j-<version>.jar``)
+For projects not using any build tools, download a pre-compiled JAR-file (``antiope-<version>.jar``)
 from the [releases page](https://github.com/JnCrMx/discord-game-sdk4j/releases).
 
-If you want, you can also download the JavaDocs (``discord-game-sdk4j-<version>-javadoc.jar``) or
-the sources (``discord-game-sdk4j-<version>-sources.jar``).
+If you want, you can also download the sources (``antiope-<version>-sources.jar``).
 
 You do **not** need to download the .dll or .so files! They are packed in the JAR and will be automatically extracted.
 
-After downloading those JARs, just add the main JAR to your project's classpath and optionally
-attach sources or JavaDocs.
+After downloading those JARs, just add the main JAR to your project's classpath.
 
 ### Building from source
 
-To obtain the native libraries you can build them from source too (see below) or just download them [here](https://github.com/JnCrMx/discord-game-sdk4j/releases/tag/v0.5.5).
-For the Windows files, you should rename them to `discord_game_sdk_jni.dll` and place them under `src/main/resources/native/windows/amd64`
-and `src/main/resources/native/windows/x86` respectively. 
+To obtain the native libraries you can build them from source too (see below) or just download them [here](https://dl-game-sdk.discordapp.net/3.2.1/discord_game_sdk.zip).
+For the Windows files, you should rename them to `discord_game_sdk_jni.dll` and place them under `src/main/resources/native/windows/amd64` and `src/main/resources/native/windows/x86` respectively. 
 For macOS, you should rename the file to `libdiscord_game_sdk_jni.dylib` and place it under `src/main/resources/native/macosx/amd64`.
 For Linux, you should rename the file to `libdiscord_game_sdk_jni.so` and place it under `src/main/resources/native/linux/amd64`.
 
@@ -48,7 +45,7 @@ Finally, build (and install) the library with Maven:
 mvn clean install -Dmaven.antrun.skip=true
 ```
 
-### Building the native library from source (does not work for MacOS yet)
+### Building the native library from source
 
 So this will be a rather tedious process. This guide is for WSL (Ubuntu). Probably works on normal Linux. Definitely does not work on macOS/Windows.
 
@@ -99,19 +96,14 @@ build and install the Java and native library:
 mvn clean install
 ```
 
-I think that was it. If it doesn't work for you, please open an issue. I might have forgotten something as it took a few hours to figure this out without docs.
-
 ## Usage
 
-To use the library, you first need to download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide).
-Extract the ZIP file and remember where you put it. You should use v3.2.1 as v2.5.6 does not have ARM support.
-
-In code the first step is initializing the Core. To do this you need to pass the path to Discord's native library as an argument.
+In code, the first step is initializing the Core. To do this you need to pass the path to Discord's native library as an argument.
 You can find this library in the directory you just extracted the ZIP file at ``lib/x86_64/discord_game_sdk.dll`` (for 64-bit Windows)
 and ``lib/x86_64/discord_game_sdk.so`` (for 64-bit Linux):
 
 ```java
-Core.init(new File("<path to the native library>"));
+DiscordGameSDKCore.loadLibrary();
 ```
 
 Now you are ready to use the library!
@@ -124,7 +116,7 @@ class Example {
             params.setClientID(APPLICATION_ID_AS_LONG);
             params.setFlags(CreateParams.getDefaultFlags());
 
-            Core core = new Core(params);
+            DiscordGameSDKCore core = new DiscordGameSDKCore(params);
             try {
                 // do something with your Core
             }
@@ -133,5 +125,3 @@ class Example {
     
 }
 ````
-
-For real examples see the ``examples/`` directory in this repository.
