@@ -1,24 +1,22 @@
 # discord-game-sdk4j
 
-[![](https://jitpack.io/v/JnCrMx/discord-game-sdk4j.svg)](https://jitpack.io/#JnCrMx/discord-game-sdk4j)
-
 This project provides Java bindings for the
 [Discord GameSDK](https://discordapp.com/developers/docs/game-sdk/sdk-starter-guide).
 
-To be honest I'm not sure if people even need this, because Discord apparently discarded its game store idea.
-
-But maybe the activity, overlay, user, and relationship features could be useful to some people.
+The intent of this fork is to provide rich presence support for [Wynntils/Artemis](https://github.com/Wynntils/artemis).
+Changes from the original project include proper documentation for building native libraries from source, as well as macOS ARM support.
 
 ## Rich Presence
 
 If you are just looking for an alternative to the deprecated [Discord Rich Presence SDK](https://discord.com/developers/docs/rich-presence/how-to),
 head over to the [ActivityExample.java](examples/ActivityExample.java)!
 
+If you are using this as a part of a Minecraft mod, it is highly recommended that you instead put the callback in a TickEvent, instead of a while true loop.
+
 ## Features of the SDK
 
-**Some of the features are deprecated by Discord as of Wed, 09 Nov 2022 and will be decommissioned and stop working on Tuesday May 2, 2023.
-They are marked with :broken_heart: in the table.
-Those already implemented will most likely continue to work until Discord decommissions them.**
+**The features marked with :broken_heart: in the table stopped working on Tuesday May 2, 2023.**
+They are scheduled to be removed from this project soon.
 
 | Feature                                                                     | State                                         | Example                                                                                                                                  |
 |-----------------------------------------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,17 +29,13 @@ Those already implemented will most likely continue to work until Discord decomm
 | [Relationships](https://discord.com/developers/docs/game-sdk/relationships) | :heavy_check_mark: implemented                | [RelationshipExample.java](examples/RelationshipExample.java), [FriendNotificationExample.java](examples/FriendNotificationExample.java) |
 | [Users](https://discord.com/developers/docs/game-sdk/users)                 | :heavy_check_mark: implemented                | none yet :cry: (see [``userTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L216) for now)                                 |
 
-I will try to work on features that are not implemented yet soon,
-but the remaining ones are quite difficult to test,
-so I don't know how much progress I can make on them.
-
 ## Installation 
 
 ### Pre-compiled
 
 #### Maven, Gradle and other build tools
 
-There are pre-compiled builds on [JitPack](https://jitpack.io/#JnCrMx/discord-game-sdk4j)
+There are pre-compiled builds on JitPack (link TBD)
 together with instructions how to use them for all common build tools.
 
 #### Manual installation
@@ -129,8 +123,8 @@ I think that was it. If it doesn't work for you, please open an issue. I might h
 
 ## Usage
 
-To use the library, you first need to download [Discord's native library](https://dl-game-sdk.discordapp.net/2.5.6/discord_game_sdk.zip).
-Extract the ZIP file and remember where you put it.
+To use the library, you first need to download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide).
+Extract the ZIP file and remember where you put it. v3.2.1 appears to work fine, but v2.5.6 is also available.
 
 In code the first step is initializing the Core. To do this you need to pass the path to Discord's native library as an argument.
 You can find this library in the directory you just extracted the ZIP file at ``lib/x86_64/discord_game_sdk.dll`` (for 64-bit Windows)
