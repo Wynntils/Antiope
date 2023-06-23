@@ -23,17 +23,13 @@ Those not implemented will remains such, as putting work into features which wil
 
 | Feature                                                                     | State                                         | Example                                                                                                                                  |
 |-----------------------------------------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| [Achievements](https://discord.com/developers/docs/game-sdk/achievements)   | :x: not implemented :broken_heart:            |                                                                                                                                          |
 | [Activities](https://discord.com/developers/docs/game-sdk/activities)       | :heavy_check_mark: implemented                | [ActivityExample.java](examples/ActivityExample.java)                                                                                    |
-| [Applications](https://discord.com/developers/docs/game-sdk/applications)   | :x: not implemented :broken_heart:            |                                                                                                                                          |
 | [Voice](https://discord.com/developers/docs/game-sdk/discord-voice)         | :heavy_check_mark: implemented :broken_heart: | [VoiceExample.java](examples/VoiceExample.java)                                                                                          |
 | [Images](https://discord.com/developers/docs/game-sdk/images)               | :heavy_check_mark: implemented :broken_heart: | none yet :cry: (see [``imageTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L417) for now)                                |
 | [Lobbies](https://discord.com/developers/docs/game-sdk/lobbies)             | :heavy_check_mark: implemented :broken_heart: | [LobbyExample.java](examples/LobbyExample.java)                                                                                          |
 | [Networking](https://discord.com/developers/docs/game-sdk/networking)       | :heavy_check_mark: implemented :broken_heart: | [NetworkExample.java](examples/NetworkExample.java)                                                                                      |
 | [Overlay](https://discord.com/developers/docs/game-sdk/overlay)             | :heavy_check_mark: implemented                | none yet :cry: (see [``overlayTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L289) for now)                              |
 | [Relationships](https://discord.com/developers/docs/game-sdk/relationships) | :heavy_check_mark: implemented                | [RelationshipExample.java](examples/RelationshipExample.java), [FriendNotificationExample.java](examples/FriendNotificationExample.java) |
-| [Storage](https://discord.com/developers/docs/game-sdk/storage)             | :x: not implemented :broken_heart:            |                                                                                                                                          |
-| [Store](https://discord.com/developers/docs/game-sdk/store)                 | :x: not implemented :broken_heart:            |                                                                                                                                          |
 | [Users](https://discord.com/developers/docs/game-sdk/users)                 | :heavy_check_mark: implemented                | none yet :cry: (see [``userTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L216) for now)                                 |
 
 I will try to work on features that are not implemented yet soon,
@@ -79,7 +75,7 @@ If you want to skip the tests (sometimes they fail for really weird reasons), ad
 
 ### Building the native library from source (does not work for MacOS yet)
 
-So this will be a rather tedious process. This guide is for WSL (Ubuntu). Definitely does not work on MacOS/Windows.
+So this will be a rather tedious process. This guide is for WSL (Ubuntu). Probably works on normal Linux. Definitely does not work on MacOS/Windows.
 
 Start by installing a lot of dependencies:
 ```shell
@@ -132,15 +128,20 @@ Core.init(new File("<path to the native library>"));
 Now you are ready to use the library!
 
 ````java
-try(CreateParams params = new CreateParams())
-{
-    params.setClientID(<your application ID as a long>);
-    params.setFlags(CreateParams.getDefaultFlags());
+class Example {
+    public static void main(String[] args) {
+        try {
+            CreateParams params = new CreateParams();
+            params.setClientID(<ApplicationIdAsLong>);
+            params.setFlags(CreateParams.getDefaultFlags());
 
-    try(Core core = new Core(params))
-    {
-        // do something with your Core
+            Core core = new Core(params);
+            try {
+                // do something with your Core
+            }
+        }
     }
+    
 }
 ````
 
