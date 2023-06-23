@@ -18,8 +18,7 @@ head over to the [ActivityExample.java](examples/ActivityExample.java)!
 
 **Some of the features are deprecated by Discord as of Wed, 09 Nov 2022 and will be decommissioned and stop working on Tuesday May 2, 2023.
 They are marked with :broken_heart: in the table.
-Those already implemented will most likely continue to work until Discord decommissions them.
-Those not implemented will remains such, as putting work into features which will end working in less than a year does not seem worth it to me.**
+Those already implemented will most likely continue to work until Discord decommissions them.**
 
 | Feature                                                                     | State                                         | Example                                                                                                                                  |
 |-----------------------------------------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
@@ -91,8 +90,17 @@ At this point, you should have folder `/usr/lib/jvm` with some copies of your Li
 Then, ensure your `JAVA_HOME` is point to the correct directory (probably some variation of `/usr/lib/jvm/java-11-openjdk-amd64/`).
 If it's not there, you can run `export JAVA_HOME=/usr/lib/whatever`.
 
-Then download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide)
-and extract it to ``./discord_game_sdk/``. You can try with v3.2.1 first and switch to v2.5.6 if it doesn't work.
+For MacOS, this part is a bit more complicated. You will need to follow the instructions [here](https://github.com/tpoechtrager/osxcross#packaging-the-sdk),
+but they are slightly wrong. In `~`, clone the repository.
+We are going to be using the **"Packing the SDK on Linux - Method 1 (Xcode > 8.0)"** option.
+The Xcode version I tested was 12.5.1. 14.3.1 did **not** seem to work. 
+Also note that step 2 is incorrect. Instead of installing `libssl-devel lzma-devel libxml2-devel`, you will need
+`libssl-dev liblzma-dev lzma-dev libxml2-dev libbz2-dev`.
+
+Once you do the above, you can proceed to their [installation instructions](https://github.com/tpoechtrager/osxcross#installation).
+Again, note that the packages mentioned are wrong. You should exclude `xz` and `libbz2`. 
+Then, running `./build.sh` worked for me. Assuming you installed this to `~/osxcross/target`, no other changes are needed.
+If not, you will have to edit `macos-amd64.cmake` and change the paths to point to your installation.
 
 Next, go to the `toolchains` folder in this project directory. You can ignore the `linux-amd64.cmake` file since we're running on WSL.
 However, you'll need to edit both `windows-x86.cmake` and `windows-amd64.cmake`. In the bottom of these files, there are two lines:
@@ -102,6 +110,9 @@ set(JAVA_INCLUDE_PATH2 /usr/lib/jvm/windows-x64-jdk-11.0.19/include/win32/)
 ```
 
 Make sure these paths point to the Windows JDK you extracted earlier. Note that it does have to point to the `/include/` subdirectory as shown.
+
+Finally, download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide)
+and extract it to ``./discord_game_sdk/``. You can try with v3.2.1 first and switch to v2.5.6 if it doesn't work.
 
 The CMake build system is integrated in Maven, so just execute to following command to
 build and install the Java and native library:
@@ -132,7 +143,7 @@ class Example {
     public static void main(String[] args) {
         try {
             CreateParams params = new CreateParams();
-            params.setClientID(<ApplicationIdAsLong>);
+            params.setClientID(APPLICATION_ID_AS_LONG);
             params.setFlags(CreateParams.getDefaultFlags());
 
             Core core = new Core(params);
