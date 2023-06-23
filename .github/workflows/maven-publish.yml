@@ -29,6 +29,6 @@ jobs:
       run: mvn -B -DskipTests -Dmaven.antrun.skip=true package --file pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -DskipTests -Dmaven.antrun.skip=true -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn deploy -B -DskipTests -Dmaven.antrun.skip=true
       env:
         GITHUB_TOKEN: ${{ github.token }}
