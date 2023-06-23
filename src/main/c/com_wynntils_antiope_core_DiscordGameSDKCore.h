@@ -57,46 +57,6 @@ JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getOve
 
 /*
  * Class:     com_wynntils_antiope_core_DiscordGameSDKCore
- * Method:    getRelationshipManager
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getRelationshipManager
-  (JNIEnv *, jobject, jlong);
-
-/*
- * Class:     com_wynntils_antiope_core_DiscordGameSDKCore
- * Method:    getImageManager
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getImageManager
-  (JNIEnv *, jobject, jlong);
-
-/*
- * Class:     com_wynntils_antiope_core_DiscordGameSDKCore
- * Method:    getLobbyManager
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getLobbyManager
-  (JNIEnv *, jobject, jlong);
-
-/*
- * Class:     com_wynntils_antiope_core_DiscordGameSDKCore
- * Method:    getNetworkManager
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getNetworkManager
-  (JNIEnv *, jobject, jlong);
-
-/*
- * Class:     com_wynntils_antiope_core_DiscordGameSDKCore
- * Method:    getVoiceManager
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_DiscordGameSDKCore_getVoiceManager
-  (JNIEnv *, jobject, jlong);
-
-/*
- * Class:     com_wynntils_antiope_core_DiscordGameSDKCore
  * Method:    runCallbacks
  * Signature: (J)V
  */
