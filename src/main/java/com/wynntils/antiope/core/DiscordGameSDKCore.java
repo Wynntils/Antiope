@@ -55,6 +55,25 @@ public class DiscordGameSDKCore implements AutoCloseable {
         if (osName.contains("windows")) {
             osName = "windows";
             objectName = LIBRARY_NAME + ".dll";
+
+            // discord game sdk needs to be loaded first on windows
+            if (arch.equals("amd64")) arch = "x86_64"; // we don't want to rename the game sdk's internals, so we need to rename our arch temporarily
+            InputStream discordInputStream = DiscordGameSDKCore.class.getResourceAsStream("/discord_game_sdk/lib/" + arch + "/discord_game_sdk.dll");
+            if (discordInputStream == null) {
+                throw new RuntimeException("Could not find discord_game_sdk.dll in classpath");
+            }
+            File discordTempDirectory = FileUtils.createTemporaryDirectory();
+            File discordTempFile = new File(discordTempDirectory, "discord_game_sdk.dll");
+            discordTempDirectory.deleteOnExit();
+            discordTempFile.deleteOnExit();
+
+            try {
+                Files.copy(discordInputStream, discordTempFile.toPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            System.load(discordTempFile.getAbsolutePath());
         } else if (osName.contains("linux")) {
             osName = "linux";
             objectName = "lib" + LIBRARY_NAME + ".so";
@@ -106,7 +125,7 @@ public class DiscordGameSDKCore implements AutoCloseable {
      *                    "discord_game_sdk.dll" or an {@link UnsatisfiedLinkError} will occur.</p>
      *                    <p>On Linux the filename does not matter.</p>
      */
-    public static native void initDiscordNative(String discordPath);
+    private static native void initDiscordNative(String discordPath);
 
     /**
      * <p>Default callback to use for operation returning a {@link Result}.</p>

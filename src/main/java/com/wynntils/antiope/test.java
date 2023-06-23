@@ -9,7 +9,7 @@ import java.time.Instant;
 
 public class test {
     public static void main(String[] args) {
-        DiscordGameSDKCore.initDiscordNative("discord_game_sdk\\lib\\x86_64\\discord_game_sdk.dll");
+        DiscordGameSDKCore.loadLibrary();
 
         DiscordGameSDKCore core = null;
 
