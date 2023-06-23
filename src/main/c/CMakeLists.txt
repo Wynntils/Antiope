@@ -6,6 +6,7 @@ find_package(JNI REQUIRED)
 include_directories(${JNI_INCLUDE_DIRS})
 include_directories(../../../discord_game_sdk/c)
 include_directories(${JAVA_INCLUDE_PATH})
+include_directories(${JAVA_INCLUDE_PATH2})
 
 add_library(discord_game_sdk_jni
 

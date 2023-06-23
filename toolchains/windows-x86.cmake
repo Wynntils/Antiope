@@ -18,8 +18,8 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 set(MSVC true)
 
-set(JAVA_INCLUDE_PATH .../jdk8u282-b08/include/)
-set(JAVA_INCLUDE_PATH2 .../jdk8u282-b08/include/win32/)
+set(JAVA_INCLUDE_PATH /usr/lib/jvm/windows-x64-jdk-11.0.19/include/)
+set(JAVA_INCLUDE_PATH2 /usr/lib/jvm/windows-x64-jdk-11.0.19/include/win32/)
 set(JAVA_AWT_INCLUDE_PATH NotNeeded)
 set(JAVA_AWT_LIBRARY NotNeeded)
 set(JAVA_JVM_LIBRARY NotNeeded)
