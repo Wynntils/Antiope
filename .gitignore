@@ -11,7 +11,4 @@
 # Discord Game SDK (include it yourself)
 /discord_game_sdk/
 
-*.dll
-*.so
-
 .vs

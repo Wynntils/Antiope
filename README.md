@@ -64,7 +64,7 @@ attach sources or JavaDocs.
 
 ### Building from source
 
-To install the library from source first of all clone the repository:
+To install the library from source first of all clone the repository (this is BROKEN), files are bundled:
 ```shell script
 git clone https://github.com/JnCrMx/discord-game-sdk4j.git
 ```
