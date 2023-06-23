@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_wynntils_antiope_ActivityManager
  * Method:    registerCommand
- * Signature: (JLjava/lang/String;)Lde/jcm/discordgamesdk/Result;
+ * Signature: (JLjava/lang/String;)Lcom/wynntils/antiope/core/type/Result;
  */
 JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerCommand
   (JNIEnv *, jobject, jlong, jstring);
@@ -18,7 +18,7 @@ JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerComm
 /*
  * Class:     com_wynntils_antiope_ActivityManager
  * Method:    registerSteam
- * Signature: (JI)Lde/jcm/discordgamesdk/Result;
+ * Signature: (JI)Lcom/wynntils/antiope/core/type/Result;
  */
 JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerSteam
   (JNIEnv *, jobject, jlong, jint);

@@ -73,8 +73,8 @@ JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_Core_create(JNIEnv *env, job
 	}
 	else // otherwise return the result
 	{
-		jclass result_clazz = (*env)->FindClass(env, "de/jcm/discordgamesdk/Result");
-		jmethodID values_method = (*env)->GetStaticMethodID(env, result_clazz, "values", "()[Lde/jcm/discordgamesdk/Result;");
+		jclass result_clazz = (*env)->FindClass(env, "com/wynntils/antiope/core/type/Result");
+		jmethodID values_method = (*env)->GetStaticMethodID(env, result_clazz, "values", "()[Lcom/wynntils/antiope/core/type/Result;");
 		jobjectArray values = (jobjectArray) (*env)->CallStaticObjectMethod(env, result_clazz, values_method);
 		jobject result_object = (*env)->GetObjectArrayElement(env, values, result);
 
@@ -122,8 +122,8 @@ void log_hook(void* data, enum EDiscordLogLevel level, const char* message)
 	args.group = NULL;
 	(*(hook_data->jvm))->AttachCurrentThread(hook_data->jvm, (void**)&env, &args);
 	
-	jclass level_clazz = (*env)->FindClass(env, "de/jcm/discordgamesdk/LogLevel");
-	jmethodID values_method = (*env)->GetStaticMethodID(env, level_clazz, "values", "()[Lde/jcm/discordgamesdk/LogLevel;");
+	jclass level_clazz = (*env)->FindClass(env, "com/wynntils/antiope/core/type/LogLevel");
+	jmethodID values_method = (*env)->GetStaticMethodID(env, level_clazz, "values", "()[Lcom/wynntils/antiope/core/type/LogLevel;");
 	jobjectArray levels = (jobjectArray) (*env)->CallStaticObjectMethod(env, level_clazz, values_method);
 	// enum DiscordLogLevel starts with index 1, so subtract 1 to translate to "normal" enum
 	jobject level_object = (*env)->GetObjectArrayElement(env, levels, level-1);

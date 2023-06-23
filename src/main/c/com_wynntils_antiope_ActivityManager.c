@@ -12,8 +12,8 @@ JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerComm
 	enum EDiscordResult result = activity_manager->register_command(activity_manager, nativeString);
 	(*env)->ReleaseStringUTFChars(env, command, nativeString);
 	
-	jclass result_clazz = (*env)->FindClass(env, "de/jcm/discordgamesdk/Result");
-	jmethodID values_method = (*env)->GetStaticMethodID(env, result_clazz, "values", "()[Lde/jcm/discordgamesdk/Result;");
+	jclass result_clazz = (*env)->FindClass(env, "com/wynntils/antiope/core/type/Result");
+	jmethodID values_method = (*env)->GetStaticMethodID(env, result_clazz, "values", "()[Lcom/wynntils/antiope/core/type/Result;");
 	jobjectArray values = (jobjectArray) (*env)->CallStaticObjectMethod(env, result_clazz, values_method);
 	jobject result_object = (*env)->GetObjectArrayElement(env, values, result);
 
@@ -26,8 +26,8 @@ JNIEXPORT jobject JNICALL Java_com_wynntils_antiope_ActivityManager_registerStea
 	
 	enum EDiscordResult result = activity_manager->register_steam(activity_manager, steamId);
 	
-	jclass result_clazz = (*env)->FindClass(env, "de/jcm/discordgamesdk/Result");
-	jmethodID values_method = (*env)->GetStaticMethodID(env, result_clazz, "values", "()[Lde/jcm/discordgamesdk/Result;");
+	jclass result_clazz = (*env)->FindClass(env, "com/wynntils/antiope/core/type/Result");
+	jmethodID values_method = (*env)->GetStaticMethodID(env, result_clazz, "values", "()[Lcom/wynntils/antiope/core/type/Result;");
 	jobjectArray values = (jobjectArray) (*env)->CallStaticObjectMethod(env, result_clazz, values_method);
 	jobject result_object = (*env)->GetObjectArrayElement(env, values, result);
 

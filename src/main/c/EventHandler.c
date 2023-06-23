@@ -56,7 +56,7 @@ void on_activity_join_request(void* event_data, struct DiscordUser* user)
 	args.group = NULL;
 	(*(event_struct->jvm))->AttachCurrentThread(event_struct->jvm, (void**)&env, &args);
 	
-	jclass user_class = (*env)->FindClass(env, "de/jcm/discordgamesdk/user/DiscordUser");
+	jclass user_class = (*env)->FindClass(env, "com/wynntils/antiope/user/DiscordUser");
 	jmethodID user_constructor = (*env)->GetMethodID(env, user_class, "<init>", 
 		"(JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V");
 	jobject user_object = (*env)->NewObject(env, user_class, user_constructor,
@@ -67,7 +67,7 @@ void on_activity_join_request(void* event_data, struct DiscordUser* user)
 		user->bot);
 	
 	jclass clazz = (*env)->GetObjectClass(env, event_struct->handler);
-	jmethodID method = (*env)->GetMethodID(env, clazz, "onActivityJoinRequest", "(Lde/jcm/discordgamesdk/user/DiscordUser;)V");
+	jmethodID method = (*env)->GetMethodID(env, clazz, "onActivityJoinRequest", "(Lcom/wynntils/antiope/user/DiscordUser;)V");
 	(*env)->CallVoidMethod(env, event_struct->handler, method, user_object);
 	
 	(*(event_struct->jvm))->DetachCurrentThread(event_struct->jvm);

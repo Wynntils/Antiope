@@ -58,7 +58,7 @@ JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_CreateParams_getFlags
 /*
  * Class:     com_wynntils_antiope_CreateParams
  * Method:    registerEventHandler
- * Signature: (JLde/jcm/discordgamesdk/events/EventHandler;)V
+ * Signature: (JLcom/wynntils/antiope/event/DiscordEventAdapter;)V
  */
 JNIEXPORT void JNICALL Java_com_wynntils_antiope_CreateParams_registerEventHandler
   (JNIEnv *, jobject, jlong, jobject);
