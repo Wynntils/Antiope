@@ -1,5 +1,7 @@
 # Build output
 /target/
+src/main/c/cmake-build-debug/
+src/main/c/out/
 
 # IDEA stuff
 /.idea/

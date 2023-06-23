@@ -15,16 +15,9 @@ If you are using this as a part of a Minecraft mod, it is highly recommended tha
 
 ## Features of the SDK
 
-**The features marked with :broken_heart: in the table stopped working on Tuesday May 2, 2023.**
-They are scheduled to be removed from this project soon.
-
 | Feature                                                                     | State                                         | Example                                                                                                                                  |
 |-----------------------------------------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | [Activities](https://discord.com/developers/docs/game-sdk/activities)       | :heavy_check_mark: implemented                | [ActivityExample.java](examples/ActivityExample.java)                                                                                    |
-| [Voice](https://discord.com/developers/docs/game-sdk/discord-voice)         | :heavy_check_mark: implemented :broken_heart: | [VoiceExample.java](examples/VoiceExample.java)                                                                                          |
-| [Images](https://discord.com/developers/docs/game-sdk/images)               | :heavy_check_mark: implemented :broken_heart: | none yet :cry: (see [``imageTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L417) for now)                                |
-| [Lobbies](https://discord.com/developers/docs/game-sdk/lobbies)             | :heavy_check_mark: implemented :broken_heart: | [LobbyExample.java](examples/LobbyExample.java)                                                                                          |
-| [Networking](https://discord.com/developers/docs/game-sdk/networking)       | :heavy_check_mark: implemented :broken_heart: | [NetworkExample.java](examples/NetworkExample.java)                                                                                      |
 | [Overlay](https://discord.com/developers/docs/game-sdk/overlay)             | :heavy_check_mark: implemented                | none yet :cry: (see [``overlayTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L289) for now)                              |
 | [Relationships](https://discord.com/developers/docs/game-sdk/relationships) | :heavy_check_mark: implemented                | [RelationshipExample.java](examples/RelationshipExample.java), [FriendNotificationExample.java](examples/FriendNotificationExample.java) |
 | [Users](https://discord.com/developers/docs/game-sdk/users)                 | :heavy_check_mark: implemented                | none yet :cry: (see [``userTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L216) for now)                                 |

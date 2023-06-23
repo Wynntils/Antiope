@@ -408,10 +408,6 @@ public class Core implements AutoCloseable
 	private final UserManager userManager;
 	private final OverlayManager overlayManager;
 	private final RelationshipManager relationshipManager;
-	private final ImageManager imageManager;
-	private final LobbyManager lobbyManager;
-	private final NetworkManager networkManager;
-	private final VoiceManager voiceManager;
 
 	/**
 	 * Creates an instance of the SDK from {@link CreateParams} and
@@ -452,10 +448,6 @@ public class Core implements AutoCloseable
 		this.userManager = new UserManager(getUserManager(pointer), this);
 		this.overlayManager = new OverlayManager(getOverlayManager(pointer), this);
 		this.relationshipManager = new RelationshipManager(getRelationshipManager(pointer), this);
-		this.imageManager = new ImageManager(getImageManager(pointer), this);
-		this.lobbyManager = new LobbyManager(getLobbyManager(pointer), this);
-		this.networkManager = new NetworkManager(getNetworkManager(pointer), this);
-		this.voiceManager = new VoiceManager(getVoiceManager(pointer), this);
 	}
 
 	private native Object create(long paramPointer);
@@ -465,11 +457,6 @@ public class Core implements AutoCloseable
 	private native long getUserManager(long pointer);
 	private native long getOverlayManager(long pointer);
 	private native long getRelationshipManager(long pointer);
-	private native long getImageManager(long pointer);
-	private native long getLobbyManager(long pointer);
-	private native long getNetworkManager(long pointer);
-	private native long getVoiceManager(long pointer);
-
 	private native void runCallbacks(long pointer);
 
 	private native void setLogHook(long pointer, int minLevel, BiConsumer<LogLevel, String> logHook);
@@ -521,61 +508,6 @@ public class Core implements AutoCloseable
 	public RelationshipManager relationshipManager()
 	{
 		return relationshipManager;
-	}
-
-	/**
-	 * <p>Returns the {@link ImageManager} associated with this core.</p>
-	 * <p>An ImageManager is used to fetch images and information
-	 * about images (dimensions) from Discord (mainly avatars).</p>
-	 * @return An {@link ImageManager}
-	 * @see <a href="https://discordapp.com/developers/docs/game-sdk/discord#getimagemanager">
-	 *     https://discordapp.com/developers/docs/game-sdk/discord#getimagemanager</a>
-	 */
-	public ImageManager imageManager()
-	{
-		return imageManager;
-	}
-
-	/**
-	 * <p>Returns the {@link LobbyManager} associated with this core.</p>
-	 * <p>A LobbyManager is used to create, manage and connect to Discord Lobbies.</p>
-	 * @return A {@link LobbyManager}
-	 * @see <a href="https://discord.com/developers/docs/game-sdk/discord#getlobbymanager">
-	 *     https://discord.com/developers/docs/game-sdk/discord#getlobbymanager</a>
-	 */
-	public LobbyManager lobbyManager()
-	{
-		return lobbyManager;
-	}
-
-	/**
-	 * Returns the {@link NetworkManager} associated with this core.
-	 * <p>
-	 * A NetworkManager can be used to open network channels over
-	 * Discord on which you can send arbitrary messages.
-	 * @return A {@link NetworkManager}
-	 * @see <a href="https://discord.com/developers/docs/game-sdk/discord#getnetworkmanager">
-	 *     https://discord.com/developers/docs/game-sdk/discord#getnetworkmanager</a>
-	 */
-	public NetworkManager networkManager()
-	{
-		return networkManager;
-	}
-
-	/**
-	 * Returns the {@link VoiceManager} associated with this core.
-	 * <p>
-	 * A VoiceManager is used to control Discord Lobby voice channels.
-	 * It can be used to configure input modes, to mute and deaf the current user,
-	 * to locally mute other users and to locally adjust their volume.
-	 * @return A {@link VoiceManager}
-	 * @see LobbyManager#connectVoice(long)
-	 * @see <a href="https://discord.com/developers/docs/game-sdk/discord#getvoicemanager">
-	 *     https://discord.com/developers/docs/game-sdk/discord#getvoicemanager</a>
-	 */
-	public VoiceManager voiceManager()
-	{
-		return voiceManager;
 	}
 
 	/**
