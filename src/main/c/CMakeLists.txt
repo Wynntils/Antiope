@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.4.1)
 
+project(discord_game_sdk_jni)
+
 find_package(JNI REQUIRED)
 include_directories(${JNI_INCLUDE_DIRS})
 include_directories(../../../discord_game_sdk/c)
+include_directories(${JAVA_INCLUDE_PATH})
 
 add_library(discord_game_sdk_jni
 
