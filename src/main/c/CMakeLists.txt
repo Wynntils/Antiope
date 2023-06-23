@@ -22,8 +22,6 @@ add_library(discord_game_sdk_jni
 			de_jcm_discordgamesdk_CreateParams.c
 			de_jcm_discordgamesdk_Core.c
 			de_jcm_discordgamesdk_OverlayManager.c
-			de_jcm_discordgamesdk_RelationshipManager.c
-			de_jcm_discordgamesdk_UserManager.c
 
 			Callback.c
 			EventHandler.c)

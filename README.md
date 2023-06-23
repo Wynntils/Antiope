@@ -1,6 +1,6 @@
 # discord-game-sdk4j
 
-This project provides Java bindings for the
+This project provides Java bindings for the rich presence portion of the
 [Discord GameSDK](https://discordapp.com/developers/docs/game-sdk/sdk-starter-guide).
 
 The intent of this fork is to provide rich presence support for [Wynntils/Artemis](https://github.com/Wynntils/artemis).
@@ -12,15 +12,6 @@ If you are just looking for an alternative to the deprecated [Discord Rich Prese
 head over to the [ActivityExample.java](examples/ActivityExample.java)!
 
 If you are using this as a part of a Minecraft mod, it is highly recommended that you instead put the callback in a TickEvent, instead of a while true loop.
-
-## Features of the SDK
-
-| Feature                                                                     | State                                         | Example                                                                                                                                  |
-|-----------------------------------------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| [Activities](https://discord.com/developers/docs/game-sdk/activities)       | :heavy_check_mark: implemented                | [ActivityExample.java](examples/ActivityExample.java)                                                                                    |
-| [Overlay](https://discord.com/developers/docs/game-sdk/overlay)             | :heavy_check_mark: implemented                | none yet :cry: (see [``overlayTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L289) for now)                              |
-| [Relationships](https://discord.com/developers/docs/game-sdk/relationships) | :heavy_check_mark: implemented                | [RelationshipExample.java](examples/RelationshipExample.java), [FriendNotificationExample.java](examples/FriendNotificationExample.java) |
-| [Users](https://discord.com/developers/docs/game-sdk/users)                 | :heavy_check_mark: implemented                | none yet :cry: (see [``userTest()``](src/test/java/de/jcm/discordgamesdk/DiscordTest.java#L216) for now)                                 |
 
 ## Installation 
 
@@ -113,7 +104,7 @@ I think that was it. If it doesn't work for you, please open an issue. I might h
 ## Usage
 
 To use the library, you first need to download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide).
-Extract the ZIP file and remember where you put it. v3.2.1 appears to work fine, but v2.5.6 is also available.
+Extract the ZIP file and remember where you put it. You should use v3.2.1 as v2.5.6 does not have ARM support.
 
 In code the first step is initializing the Core. To do this you need to pass the path to Discord's native library as an argument.
 You can find this library in the directory you just extracted the ZIP file at ``lib/x86_64/discord_game_sdk.dll`` (for 64-bit Windows)
