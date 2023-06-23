@@ -122,6 +122,8 @@ build and install the Java and native library:
 mvn clean install
 ```
 
+Again, consider `-DskipTests`.
+
 I think that was it. If it doesn't work for you, please open an issue. I might have forgotten something as it took a few hours to figure this out without docs.
 
 ## Usage
