@@ -198,8 +198,6 @@ public class DiscordGameSDKCore implements AutoCloseable {
 
     private native long getActivityManager(long pointer);
 
-    private native long getUserManager(long pointer);
-
     private native long getOverlayManager(long pointer);
 
     private native void runCallbacks(long pointer);
