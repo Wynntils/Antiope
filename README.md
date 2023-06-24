@@ -58,6 +58,9 @@ sudo apt install -y g++-mingw-w64-i686 g++-mingw-w64-x86-64 gcc-mingw-w64-i686 g
 ```
 
 And also download [Maven](https://maven.apache.org/download.cgi) if you don't have it. Extract it somewhere and add the `bin` folder to your `PATH`.
+It is possible to download Maven to the host Windows machine and add it to Windows' `PATH`.
+
+Lastly, note that you can access Windows host machine files from WSL at `/mnt/c/` (or any other drive letter).
 
 At this point, you should have folder `/usr/lib/jvm` with some copies of your Linux JDK.
 Ensure your `JAVA_HOME` is pointed to the correct directory (probably some variation of `/usr/lib/jvm/java-11-openjdk-amd64/`).
@@ -100,12 +103,11 @@ Note that line 4 does not allow you to use `~`, so you will have to use the full
 Finally, download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide)
 and extract it to ``./discord_game_sdk/``. You should be using v3.2.1 (or other compatible version) as v2.5.6 does not have ARM support.
 
-The CMake build system is integrated in Maven, so just execute to following command to
-build and install the Java and native library:
-
+The CMake build system is integrated in Maven, so just execute the following command.
 ```shell script
 mvn clean install
 ```
+The output dll/so/dylib files will be placed in the `target/native` directory. For convenience, you can run `copy-natives.sh` to copy them to `src/main/resources/native`.
 
 ## Usage
 
