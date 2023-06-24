@@ -45,49 +45,60 @@ Finally, build (and install) the library with Maven:
 mvn clean install -Dmaven.antrun.skip=true
 ```
 
-### Building the native library from source
+## Building the native library from source
+### This is required for any changes to the C code.
 
-So this will be a rather tedious process. This guide is for WSL (Ubuntu). Probably works on normal Linux. Definitely does not work on macOS/Windows.
+This guide is for WSL (Ubuntu) and it also probably works on normal Linux. It definitely does not work on macOS/Windows.
 
 Start by installing a lot of dependencies:
 ```shell
 sudo apt update
-sudo apt install -y cmake g++-mingw-w64-i686 g++-mingw-w64-x86-64 gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 openjdk-11-jdk
+sudo apt install -y clang cmake make libssl-dev liblzma-dev lzma-dev libxml2-dev libbz2-dev
+sudo apt install -y g++-mingw-w64-i686 g++-mingw-w64-x86-64 gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 openjdk-11-jdk
 ```
 
 And also download [Maven](https://maven.apache.org/download.cgi) if you don't have it. Extract it somewhere and add the `bin` folder to your `PATH`.
 
-You will also need to download some copy of OpenJDK 11 for Windows. The compressed archive version, not the installer.
-
-At this point, you should have folder `/usr/lib/jvm` with some copies of your Linux JDK. Unzip and move your Windows copy here.
-Then, ensure your `JAVA_HOME` is point to the correct directory (probably some variation of `/usr/lib/jvm/java-11-openjdk-amd64/`).
+At this point, you should have folder `/usr/lib/jvm` with some copies of your Linux JDK.
+Ensure your `JAVA_HOME` is pointed to the correct directory (probably some variation of `/usr/lib/jvm/java-11-openjdk-amd64/`).
 You can check with `echo ${JAVA_HOME}`.
-If it's not there, you can run `export JAVA_HOME=/usr/lib/whatever`.
+If it's not there, you can run `export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64`.
 
-For macOS, this part is a bit more complicated. You will need to follow the instructions [here](https://github.com/tpoechtrager/osxcross#packaging-the-sdk),
-but they are slightly wrong. In `~`, clone the repository.
-We are going to be using the **"Packing the SDK on Linux - Method 1 (Xcode > 8.0)"** option.
-The Xcode version I tested was 12.5.1. 14.3.1 did **not** seem to work. 
-Also note that step 2 is incorrect. Instead of installing `libssl-devel lzma-devel libxml2-devel`, you will need
-`libssl-dev liblzma-dev lzma-dev libxml2-dev libbz2-dev`.
+#### Prepare for Windows cross-compilation
 
-Once you do the above, you can proceed to their [installation instructions](https://github.com/tpoechtrager/osxcross#installation).
-Again, note that the packages mentioned are wrong. You should exclude `xz` and `libbz2`. 
-Then, running `./build.sh` worked for me.
-Lastly, you will have to edit `macos-amd64.cmake` and change the paths (lines 2 and 4) to point to your installation.
-Note that line 4 does not allow you to use `~`, so you will have to use the full path.
+You will need to download some copy of OpenJDK 11 for Windows. The compressed archive version, not the installer.
+Unzip the archive and place it in `/usr/lib/jvm`. You should rename the folder to `windows-x64-jdk-11.0.19`, or whatever version you have.
 
-Next, go to the `toolchains` folder in this project directory. You can ignore the `linux-amd64.cmake` file since we're running on WSL.
-However, you'll need to edit both `windows-x86.cmake` and `windows-amd64.cmake`. In the bottom of these files, there are two lines:
+Next, go to the `toolchains` folder in this project directory. You may need to edit both `windows-x86.cmake` and `windows-amd64.cmake`.
+At the end of each file, there are two lines:
 ```
 set(JAVA_INCLUDE_PATH /usr/lib/jvm/windows-x64-jdk-11.0.19/include/)
 set(JAVA_INCLUDE_PATH2 /usr/lib/jvm/windows-x64-jdk-11.0.19/include/win32/)
 ```
+Ensure that the paths are correct. They should be pointing to the `include` and `include/win32` folders in your Windows JDK.
+Note that it does have to point to the `/include/` subdirectory as shown.
 
-Make sure these paths point to the Windows JDK you extracted earlier. Note that it does have to point to the `/include/` subdirectory as shown.
+#### Prepare for macOS cross-compilation
+
+For macOS, this part is a bit more complicated. 
+You will need to follow the instructions [here](https://github.com/tpoechtrager/osxcross#packaging-the-sdk), but they are slightly wrong. 
+In `~`, clone the repository.
+
+You should be using the **"Packing the SDK on Linux - Method 1 (Xcode > 8.0)"** option.
+Xcode version 12.5.1 is tested and working. Version 14.3.1 and newer does **not** work.
+**You can skip step 2.** We have installed the correct dependencies already, and the ones listed here are wrong.
+
+Once you do the above, you can proceed to their [installation instructions](https://github.com/tpoechtrager/osxcross#installation).
+Again, note that the packages mentioned are wrong. You should exclude `xz` and `libbz2`. **Do not run their `get_dependencies.sh` script, it does not work.**
+You can run `./build.sh` immediately after manually ensuring that the dependencies are installed.
+
+Lastly, you will have to edit `macos-amd64.cmake` and change the paths (lines 2 and 4) to point to your installation.
+Note that line 4 does not allow you to use `~`, so you will have to use the full path.
+
+#### Build the native library
 
 Finally, download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide)
-and extract it to ``./discord_game_sdk/``. You can try with v3.2.1 first and switch to v2.5.6 if it doesn't work.
+and extract it to ``./discord_game_sdk/``. You should be using v3.2.1 (or other compatible version) as v2.5.6 does not have ARM support.
 
 The CMake build system is integrated in Maven, so just execute to following command to
 build and install the Java and native library:
