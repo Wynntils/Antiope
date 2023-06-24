@@ -52,34 +52,25 @@ public class DiscordGameSDKCore implements AutoCloseable {
 
         String objectName;
 
+        String preloadDiscordSdk;
+
         if (osName.contains("windows")) {
             osName = "windows";
             objectName = LIBRARY_NAME + ".dll";
 
-            // discord game sdk needs to be loaded first on windows
-            if (arch.equals("amd64")) arch = "x86_64"; // we don't want to rename the game sdk's internals, so we need to rename our arch temporarily
-            InputStream discordInputStream = DiscordGameSDKCore.class.getResourceAsStream("/discord_game_sdk/lib/" + arch + "/discord_game_sdk.dll");
-            if (discordInputStream == null) {
-                throw new RuntimeException("Could not find discord_game_sdk.dll in classpath");
-            }
-            File discordTempDirectory = FileUtils.createTemporaryDirectory();
-            File discordTempFile = new File(discordTempDirectory, "discord_game_sdk.dll");
-            discordTempDirectory.deleteOnExit();
-            discordTempFile.deleteOnExit();
-
-            try {
-                Files.copy(discordInputStream, discordTempFile.toPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            System.load(discordTempFile.getAbsolutePath());
+            // we don't want to rename the game sdk's internals, so we need to rename our arch temporarily
+            if (arch.equals("amd64")) arch = "x86_64";
+            preloadDiscordSdk = "/discord_game_sdk/lib/" + arch + "/discord_game_sdk.dll";
         } else if (osName.contains("linux")) {
             osName = "linux";
             objectName = "lib" + LIBRARY_NAME + ".so";
+
+            preloadDiscordSdk = null;
         } else if (osName.contains("mac os")) {
             osName = "macos";
             objectName = "lib" + LIBRARY_NAME + ".dylib";
+
+            preloadDiscordSdk = null;
         } else {
             throw new RuntimeException("Cannot determine OS type: " + osName);
         }
@@ -91,26 +82,19 @@ public class DiscordGameSDKCore implements AutoCloseable {
         */
         if (arch.equals("x86_64")) arch = "amd64";
 
+        if (preloadDiscordSdk != null) {
+            File discordSdkFile = FileUtils.createTemporaryFileFromResource(preloadDiscordSdk);
+
+            // Discord game sdk needs to be loaded first on windows
+            System.load(discordSdkFile.getAbsolutePath());
+        }
+
         String libraryPath = "/native/" + osName + "/" + arch + "/" + objectName;
-        InputStream libraryInputStream = DiscordGameSDKCore.class.getResourceAsStream(libraryPath);
-        if (libraryInputStream == null) {
-            throw new RuntimeException(new FileNotFoundException("Cannot find native library for OS: " + osName + ", arch: " + arch + " at: " + libraryPath));
-        }
 
-        File tempDirectory = FileUtils.createTemporaryDirectory();
+        File libraryFile = FileUtils.createTemporaryFileFromResource(libraryPath);
 
-        // A temporary file copy has to be created because Windows has trouble loading DLLs from JARs
-        File tempFile = new File(tempDirectory, objectName);
-        tempFile.deleteOnExit();
-
-        try {
-            Files.copy(libraryInputStream, tempFile.toPath());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.load(tempFile.getAbsolutePath());
-        initDiscordNative(tempFile.getAbsolutePath());
+        System.load(libraryFile.getAbsolutePath());
+        initDiscordNative(libraryFile.getAbsolutePath());
         firstInitDone = true;
     }
 
