@@ -1,5 +1,6 @@
 package com.wynntils.antiope.manager.activity;
 
+import com.wynntils.antiope.core.type.CreateParams;
 import com.wynntils.antiope.core.type.Result;
 import com.wynntils.antiope.manager.activity.type.Activity;
 import com.wynntils.antiope.manager.activity.type.ActivityActionType;
@@ -73,9 +74,24 @@ public class ActivityManager {
      * <p>The {@link DiscordGameSDKCore#DEFAULT_CALLBACK} is used to handle the returned {@link Result}.</p>
      * @see <a href="https://discordapp.com/developers/docs/game-sdk/activities#clearactivity">
      *     https://discordapp.com/developers/docs/game-sdk/activities#clearactivity</a>
+     *     
+     *  The temporary workaround closes the original core. You should manually make a new one with the same CreateParams.
      */
     public void clearActivity() {
-        clearActivity(DiscordGameSDKCore.DEFAULT_CALLBACK);
+        // FIXME: The Discord SDK is broken and returns InvalidPayload when attempting to clear the activity.
+        // This is a temporary workaround.
+        // Related issues:
+        // https://github.com/discord/gamesdk-and-dispatch/issues/114
+        // https://github.com/discord/discord-api-docs/issues/4938
+
+        CreateParams tempParams = new CreateParams();
+        tempParams.setClientID(0);
+        tempParams.setFlags(CreateParams.getDefaultFlags());
+        DiscordGameSDKCore tempCore = new DiscordGameSDKCore(tempParams);
+        core.close();
+        tempCore.activityManager().updateActivity(new Activity());
+
+        //clearActivity(DiscordGameSDKCore.DEFAULT_CALLBACK);
     }
 
     /**

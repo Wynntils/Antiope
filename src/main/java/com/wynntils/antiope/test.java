@@ -13,7 +13,8 @@ public class test {
 
         DiscordGameSDKCore core = null;
 
-        try (CreateParams params = new CreateParams()) {
+        CreateParams params = new CreateParams();
+        try {
             System.out.println("setting client id");
             params.setClientID(1121410048996954192L);
             params.setFlags(CreateParams.getDefaultFlags());
@@ -42,10 +43,22 @@ public class test {
         activity.assets().setSmallText("this is a less big image");
 
         core.activityManager().updateActivity(activity);
+        int count = 0;
         while (true) {
             try {
+                count++;
                 core.runCallbacks();
                 Thread.sleep(16);
+                if (count == 300) {
+                    System.out.println("clearing activity");
+                    core.activityManager().clearActivity();
+                    if (!core.isOpen()) {
+                        core = new DiscordGameSDKCore(params);
+                        System.out.println("got new core");
+                    } else {
+                        core.runCallbacks();
+                    }
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
