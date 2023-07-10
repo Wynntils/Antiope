@@ -16,12 +16,13 @@ public class test {
         try (CreateParams params = new CreateParams()) {
             System.out.println("setting client id");
             params.setClientID(1121410048996954192L);
-            params.setFlags(CreateParams.getDefaultFlags());
+            params.setFlags(CreateParams.getNoRequireDiscordFlags());
             try {
                 core = new DiscordGameSDKCore(params);
                 System.out.println("got new core");
             } catch (RuntimeException e) {
-                throw new RuntimeException(e);
+                System.out.println("discord is not running, exiting");
+                return;
             }
         } catch (RuntimeException e) {
             e.printStackTrace();

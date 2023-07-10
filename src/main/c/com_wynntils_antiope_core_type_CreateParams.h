@@ -71,6 +71,14 @@ JNIEXPORT void JNICALL Java_com_wynntils_antiope_core_type_CreateParams_register
 JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_type_CreateParams_getDefaultFlags
   (JNIEnv *, jclass);
 
+/*
+ * Class:     com_wynntils_antiope_core_type_CreateParams
+ * Method:    getDefaultFlags
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_type_CreateParams_getNoRequireDiscordFlags
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif

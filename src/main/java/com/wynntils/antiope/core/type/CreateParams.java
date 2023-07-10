@@ -159,6 +159,11 @@ public class CreateParams implements AutoCloseable {
     public static native long getDefaultFlags();
 
     /**
+     * @return Flags that do not require Discord to be active and do not automatically start Discord.
+     */
+    public static native long getNoRequireDiscordFlags();
+
+    /**
      * <p>Frees the allocated native structure.</p>
      * <p>You should call this when you do not need the structure anymore.
      * Do <b>not</b> call this if you still want to use a {@link DiscordGameSDKCore} created from the params.
