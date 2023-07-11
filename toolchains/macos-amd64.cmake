@@ -4,6 +4,6 @@ LIST(APPEND CMAKE_PROGRAM_PATH ~/osxcross/target/bin)
 set(CMAKE_C_FLAGS -fuse-ld=/home/ryan/osxcross/target/bin/x86_64-apple-darwin20.4-ld)
 
 set(CMAKE_C_COMPILER o64-clang)
-set(CMAKE_C_COMPILER_WORKS 1)
 
 set(CMAKE_SHARED_LIBRARY_SUFFIX_C ".dylib")
+set(JAVA_INCLUDE_PATH /usr/lib/jvm/macos-aarch64-jdk-11.0.19/Contents/Home/include)
