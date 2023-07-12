@@ -2,7 +2,7 @@ set(CMAKE_SYSTEM_NAME macOS)
 set(CMAKE_SYSTEM_PROCESSOR arm64)
 LIST(APPEND CMAKE_PROGRAM_PATH ~/osxcross/target/bin)
 
-set(CMAKE_C_COMPILER /home/ryan/osxcross/target/bin/oa64-clang)
+set(CMAKE_C_COMPILER oa64-clang)
 set(CMAKE_C_COMPILER_TARGET arm64-apple-darwin20.4)
 set(CMAKE_C_FLAGS -fuse-ld=/home/ryan/osxcross/target/bin/arm64-apple-darwin20.4-ld)
 
