@@ -46,10 +46,11 @@ mvn clean install -Dmaven.antrun.skip=true
 ```
 
 ## Building the native library from source
-### This is required for any changes to the C code.
+This is required for any changes to the C code.
 
 This guide is for WSL (Ubuntu) and it also probably works on normal Linux. It definitely does not work on macOS/Windows.
 
+### Prerequisites
 Start by installing a lot of dependencies:
 ```shell
 sudo apt update
@@ -64,41 +65,60 @@ Lastly, note that you can access Windows host machine files from WSL at `/mnt/c/
 
 At this point, you should have folder `/usr/lib/jvm` with some copies of your Linux JDK.
 Ensure your `JAVA_HOME` is pointed to the correct directory (probably some variation of `/usr/lib/jvm/java-11-openjdk-amd64/`).
-You can check with `echo ${JAVA_HOME}`.
-If it's not there, you can run `export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64`.
-
-#### Prepare for Windows cross-compilation
-
-You will need to download some copy of OpenJDK 11 for Windows. The compressed archive version, not the installer.
-Unzip the archive and place it in `/usr/lib/jvm`. You should rename the folder to `windows-x64-jdk-11.0.19`, or whatever version you have.
-
-Next, go to the `toolchains` folder in this project directory. You may need to edit both `windows-x86.cmake` and `windows-amd64.cmake`.
-At the end of each file, there are two lines:
+You can check with `echo $JAVA_HOME`.
+If it's not there, you should create a .sh file in `/etc/profile.d/` with the following contents (filename does not matter):
+```shell
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ```
-set(JAVA_INCLUDE_PATH /usr/lib/jvm/windows-x64-jdk-11.0.19/include/)
-set(JAVA_INCLUDE_PATH2 /usr/lib/jvm/windows-x64-jdk-11.0.19/include/win32/)
-```
-Ensure that the paths are correct. They should be pointing to the `include` and `include/win32` folders in your Windows JDK.
-Note that it does have to point to the `/include/` subdirectory as shown.
+Then reload by logging out and back in.
 
-#### Prepare for macOS cross-compilation
+### Download other platform JDKs
+You will need to download copies of OpenJDK 11 for Windows x64, macOS x64 and macOS aarch64. The compressed archive version, not the installer.
+Unzip each archive and place them in `/usr/lib/jvm`. 
+You should rename the folders to `windows-x64-jdk-11.0.19`, `macos-x64-jdk-11.0.19` and `macos-aarch64-jdk-11.0.19` respectively.
+If you are using 11.0.19 and have named the folders exactly like the above, you can skip this next step.
+
+#### Update .cmake files
+If your JDK versions are different, you will need to update the `.cmake` files in the `toolchains` folder.
+For each file, there are paths pointing to the JDKs. Simply edit them so the paths point to your jdk folders.
+
+### Prepare for Windows cross-compilation
+Nothing to do! Everything has been completed in the previous steps already.
+
+### Prepare for macOS cross-compilation
 
 For macOS, this part is a bit more complicated. 
 You will need to follow the instructions [here](https://github.com/tpoechtrager/osxcross#packaging-the-sdk), but they are slightly wrong. 
-In `~`, clone the repository.
+In `~`, clone the repository. (`git clone https://github.com/tpoechtrager/osxcross`)
 
 You should be using the **"Packing the SDK on Linux - Method 1 (Xcode > 8.0)"** option.
-Xcode version 12.5.1 is tested and working. Version 14.3.1 and newer does **not** work.
-**You can skip step 2.** We have installed the correct dependencies already, and the ones listed here are wrong.
+Xcode version 12.5.1 is tested and working. Version 14.3.1 and newer does **not** work. These docs assume you are using 12.5.1. 
+After that, **you can skip step 2.** We have installed the correct dependencies already, and the ones listed here are wrong.
+Finish with steps 3 and 4 as normal.
 
 Once you do the above, you can proceed to their [installation instructions](https://github.com/tpoechtrager/osxcross#installation).
 Again, note that the packages mentioned are wrong. You should exclude `xz` and `libbz2`. **Do not run their `get_dependencies.sh` script, it does not work.**
 You can run `./build.sh` immediately after manually ensuring that the dependencies are installed.
 
-Lastly, you will have to edit `macos-amd64.cmake` and change the paths (lines 2 and 4) to point to your installation.
-Note that line 4 does not allow you to use `~`, so you will have to use the full path.
+Next, install cctools from [here](https://github.com/tpoechtrager/cctools-port). You do not need the TAPI library.
+When you run `./configure`, you should use the following command:
+```shell script
+./configure --prefix=/home/<username>/cctools --target=aarch64-apple-darwin20.4
+```
+(Replacing `<username>` with your username, and `darwin20.4` if you are using some other Xcode version).
+Complete installation as normal.
 
-#### Build the native library
+Now add both osxcross and cctools to PATH. As mentioned above in the prerequisites, you can create (or use your existing) .sh file in `/etc/profile.d/`.
+Add the following contents:
+```shell
+export PATH=$PATH:$JAVA_HOME/bin:/home/<username>/cctools-port/cctools:/home/<username>/osxcross/target/bin
+```
+(Again, replace `<username>` with your username).
+
+Lastly, you will have to edit `macos-amd64.cmake` and `macos-aarch64.cmake` in the `toolchains` folder.
+Search for the line `set(CMAKE_C_FLAGS` and change the username in the path to your own.
+
+### Build the native library
 
 Finally, download [Discord's native library](https://discord.com/developers/docs/game-sdk/sdk-starter-guide)
 and extract it to ``./discord_game_sdk/``. You should be using v3.2.1 (or other compatible version) as v2.5.6 does not have ARM support.
