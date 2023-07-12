@@ -129,6 +129,9 @@ mvn clean install
 ```
 The output dll/so/dylib files will be placed in the `target/native` directory. For convenience, you can run `copy-natives.sh` to copy them to `src/main/resources/native`.
 
+Once you copy them over, you can run `test.java` (changing the client ID to your own application) to test if it works.
+If "got new core" is printed out, that specific platform is working. 
+
 ## Usage
 
 In code, the first step is initializing the Core. To do this you need to pass the path to Discord's native library as an argument.
