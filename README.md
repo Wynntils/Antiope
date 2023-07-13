@@ -34,13 +34,7 @@ You do **not** need to download the .dll or .so files! They are packed in the JA
 After downloading those JARs, just add the main JAR to your project's classpath.
 
 ### Building from source
-
-To obtain the native libraries you can build them from source too (see below) or just download them [here](https://dl-game-sdk.discordapp.net/3.2.1/discord_game_sdk.zip).
-For the Windows files, you should rename them to `discord_game_sdk_jni.dll` and place them under `src/main/resources/native/windows/amd64` and `src/main/resources/native/windows/x86` respectively. 
-For macOS, you should rename the file to `libdiscord_game_sdk_jni.dylib` and place it under `src/main/resources/native/macosx/amd64`.
-For Linux, you should rename the file to `libdiscord_game_sdk_jni.so` and place it under `src/main/resources/native/linux/amd64`.
-
-Finally, build (and install) the library with Maven:
+Build (and install) the library with Maven:
 ```shell
 mvn clean install -Dmaven.antrun.skip=true
 ```
