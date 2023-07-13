@@ -3,6 +3,7 @@ package com.wynntils.antiope;
 
 import com.wynntils.antiope.core.DiscordGameSDKCore;
 import com.wynntils.antiope.core.type.CreateParams;
+import com.wynntils.antiope.core.type.GameSDKException;
 import com.wynntils.antiope.manager.activity.type.Activity;
 
 import java.time.Instant;
@@ -20,7 +21,9 @@ public class test {
             try {
                 core = new DiscordGameSDKCore(params);
                 System.out.println("got new core");
-            } catch (RuntimeException e) {
+            } catch (GameSDKException e) {
+                e.printStackTrace();
+                System.out.println(e.getResult());
                 System.out.println("discord is not running, exiting");
                 return;
             }
