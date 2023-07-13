@@ -87,3 +87,7 @@ JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_type_CreateParams_getDefa
 {
 	return DiscordCreateFlags_Default;
 }
+
+JNIEXPORT jlong JNICALL Java_com_wynntils_antiope_core_type_CreateParams_getNoRequireDiscordFlags(JNIEnv *env, jclass clazz) {
+    return DiscordCreateFlags_NoRequireDiscord;
+}
