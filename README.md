@@ -54,8 +54,9 @@ sudo apt install -y g++-mingw-w64-i686 g++-mingw-w64-x86-64 gcc-mingw-w64-i686 g
 
 And also download [Maven](https://maven.apache.org/download.cgi) if you don't have it. Extract it somewhere and add the `bin` folder to your `PATH`.
 It is possible to download Maven to the host Windows machine and add it to Windows' `PATH`.
+By default, this will also make them available in WSL.
 
-Lastly, note that you can access Windows host machine files from WSL at `/mnt/c/` (or any other drive letter).
+Note that you can access Windows host machine files from WSL at `/mnt/c/` (or any other drive letter).
 
 At this point, you should have folder `/usr/lib/jvm` with some copies of your Linux JDK.
 Ensure your `JAVA_HOME` is pointed to the correct directory (probably some variation of `/usr/lib/jvm/java-11-openjdk-amd64/`).
@@ -64,7 +65,7 @@ If it's not there, you should create a .sh file in `/etc/profile.d/` with the fo
 ```shell
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ```
-Then reload by logging out and back in.
+Then reload by logging out and back in (reconnect ssh session or close WSL window).
 
 ### Download other platform JDKs
 You will need to download copies of OpenJDK 11 for Windows x64, macOS x64 and macOS aarch64. The compressed archive version, not the installer.
