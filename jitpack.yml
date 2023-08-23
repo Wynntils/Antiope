@@ -1,0 +1,5 @@
+jdk:
+  - openjdk11
+install:
+  - mkdir -p ~/.m2
+  - mvn clean install -Dmaven.antrun.skip=true

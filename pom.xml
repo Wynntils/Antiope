@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wynntils</groupId>
 	<artifactId>antiope</artifactId>
-	<version>0.2.1</version>
+	<version>0.2.2</version>
 	<name>Antiope</name>
 
     <description>Java bindings for Discord's Game SDK</description>
@@ -283,12 +283,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/wynntils/antiope</url>
-        </repository>
-    </distributionManagement>
 </project>
